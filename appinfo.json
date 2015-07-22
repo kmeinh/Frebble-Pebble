@@ -1,20 +1,24 @@
 {
-    "appKeys": {},
-    "capabilities": [
-        ""
-    ],
-    "companyName": "Lutschbirne",
-    "longName": "Frebble Watchface",
-    "projectType": "native",
-    "resources": {
-        "media": []
-    },
-    "sdkVersion": "2",
-    "shortName": "Frebble",
-    "uuid": "5367c955-d5cb-4cb6-ae62-3a2f3c0e11ef",
-    "versionCode": 1,
-    "versionLabel": "1.0",
-    "watchapp": {
-        "watchface": true
-    }
+  "appKeys": {},
+  "capabilities": [
+    ""
+  ],
+  "companyName": "Lutschbirne",
+  "longName": "Frebble Watchface",
+  "projectType": "native",
+  "resources": {
+    "media": []
+  },
+  "sdkVersion": "3",
+  "shortName": "Frebble",
+  "uuid": "5367c955-d5cb-4cb6-ae62-3a2f3c0e11ef",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "targetPlatforms": [
+    "aplite",
+    "basalt"
+  ]
 }
