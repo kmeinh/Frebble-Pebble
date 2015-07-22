@@ -17,7 +17,7 @@ DerivedData
 .idea/
 *.hmap
 *.DS_Store
-
+*.backup
 deploy.sh
 
 #CocoaPods
