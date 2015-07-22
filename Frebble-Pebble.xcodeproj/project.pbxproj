@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2871404A1B5FD148006E714F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 287140491B5FD148006E714F /* main.c */; };
+		2871404F1B5FD310006E714F /* SoapManager.c in Sources */ = {isa = PBXBuildFile; fileRef = 2871404D1B5FD310006E714F /* SoapManager.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,9 @@
 /* Begin PBXFileReference section */
 		2871403E1B5FD111006E714F /* Frebble-Pebble */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Frebble-Pebble"; sourceTree = BUILT_PRODUCTS_DIR; };
 		287140491B5FD148006E714F /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		2871404B1B5FD25E006E714F /* appinfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appinfo.json; sourceTree = "<group>"; };
+		2871404D1B5FD310006E714F /* SoapManager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SoapManager.c; sourceTree = "<group>"; };
+		2871404E1B5FD310006E714F /* SoapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 		287140351B5FD111006E714F = {
 			isa = PBXGroup;
 			children = (
+				2871404B1B5FD25E006E714F /* appinfo.json */,
 				287140481B5FD148006E714F /* src */,
 				2871403F1B5FD111006E714F /* Products */,
 			);
@@ -57,9 +62,19 @@
 		287140481B5FD148006E714F /* src */ = {
 			isa = PBXGroup;
 			children = (
+				2871404C1B5FD2EA006E714F /* soap */,
 				287140491B5FD148006E714F /* main.c */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		2871404C1B5FD2EA006E714F /* soap */ = {
+			isa = PBXGroup;
+			children = (
+				2871404D1B5FD310006E714F /* SoapManager.c */,
+				2871404E1B5FD310006E714F /* SoapManager.h */,
+			);
+			path = soap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2871404F1B5FD310006E714F /* SoapManager.c in Sources */,
 				2871404A1B5FD148006E714F /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
