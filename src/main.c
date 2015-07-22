@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "windowManager.h"
+#include "appMessageManager.h"
 
 static Window *s_main_window;
 
@@ -9,6 +10,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 
 static void main_window_load(Window *window) {
   initWindow(window);
+  initAppMessageManager();
 }
 
 static void main_window_unload(Window *window) {

@@ -10,3 +10,4 @@
 
 void initWindow(Window *window);
 void deinitWindow(Window *window);
+void updateDownStream();
