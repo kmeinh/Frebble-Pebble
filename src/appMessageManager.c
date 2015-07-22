@@ -18,7 +18,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 
         break;
       case MAX_DOWN:
-        updateDownStream(tuple->value->cstring);
+        updateDownStream((int) tuple->value->int32));
         break;
       case AVAILABLE_UP:
 
@@ -27,6 +27,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 
         break;
     }
+    tuple = dict_read_next(iterator);
   }
 }
 

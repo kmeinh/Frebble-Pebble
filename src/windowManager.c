@@ -18,9 +18,9 @@ void initWindow(Window *window) {
   }
 }
 
-void updateDownStream(char* downStream) {
+void updateDownStream(int downStream) {
   int y = 2;
-
+  char 
   for (int x = 1; x < NUM_X; x++) {
     textBuffer[y][x][0] = downStream[x - 1];
     APP_LOG(APP_LOG_LEVEL_DEBUG, "%s", textBuffer[y][x]);
