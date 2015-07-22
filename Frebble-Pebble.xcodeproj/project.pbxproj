@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		2871404A1B5FD148006E714F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 287140491B5FD148006E714F /* main.c */; };
 		2871404F1B5FD310006E714F /* SoapManager.c in Sources */ = {isa = PBXBuildFile; fileRef = 2871404D1B5FD310006E714F /* SoapManager.c */; };
+		7C1D969D1B5FD5180045FE3D /* soap-admin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D968B1B5FD5180045FE3D /* soap-admin.c */; };
+		7C1D969E1B5FD5180045FE3D /* soap-client.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D968D1B5FD5180045FE3D /* soap-client.c */; };
+		7C1D969F1B5FD5180045FE3D /* soap-ctx.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D968F1B5FD5180045FE3D /* soap-ctx.c */; };
+		7C1D96A01B5FD5180045FE3D /* soap-env.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D96911B5FD5180045FE3D /* soap-env.c */; };
+		7C1D96A11B5FD5180045FE3D /* soap-fault.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D96931B5FD5180045FE3D /* soap-fault.c */; };
+		7C1D96A21B5FD5180045FE3D /* soap-router.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D96951B5FD5180045FE3D /* soap-router.c */; };
+		7C1D96A31B5FD5180045FE3D /* soap-server.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D96971B5FD5180045FE3D /* soap-server.c */; };
+		7C1D96A41B5FD5180045FE3D /* soap-service.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D96991B5FD5180045FE3D /* soap-service.c */; };
+		7C1D96A51B5FD5180045FE3D /* soap-xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D969B1B5FD5180045FE3D /* soap-xml.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +38,24 @@
 		2871404B1B5FD25E006E714F /* appinfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appinfo.json; sourceTree = "<group>"; };
 		2871404D1B5FD310006E714F /* SoapManager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SoapManager.c; sourceTree = "<group>"; };
 		2871404E1B5FD310006E714F /* SoapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapManager.h; sourceTree = "<group>"; };
+		7C1D968B1B5FD5180045FE3D /* soap-admin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-admin.c"; sourceTree = "<group>"; };
+		7C1D968C1B5FD5180045FE3D /* soap-admin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-admin.h"; sourceTree = "<group>"; };
+		7C1D968D1B5FD5180045FE3D /* soap-client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-client.c"; sourceTree = "<group>"; };
+		7C1D968E1B5FD5180045FE3D /* soap-client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-client.h"; sourceTree = "<group>"; };
+		7C1D968F1B5FD5180045FE3D /* soap-ctx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-ctx.c"; sourceTree = "<group>"; };
+		7C1D96901B5FD5180045FE3D /* soap-ctx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-ctx.h"; sourceTree = "<group>"; };
+		7C1D96911B5FD5180045FE3D /* soap-env.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-env.c"; sourceTree = "<group>"; };
+		7C1D96921B5FD5180045FE3D /* soap-env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-env.h"; sourceTree = "<group>"; };
+		7C1D96931B5FD5180045FE3D /* soap-fault.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-fault.c"; sourceTree = "<group>"; };
+		7C1D96941B5FD5180045FE3D /* soap-fault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-fault.h"; sourceTree = "<group>"; };
+		7C1D96951B5FD5180045FE3D /* soap-router.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-router.c"; sourceTree = "<group>"; };
+		7C1D96961B5FD5180045FE3D /* soap-router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-router.h"; sourceTree = "<group>"; };
+		7C1D96971B5FD5180045FE3D /* soap-server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-server.c"; sourceTree = "<group>"; };
+		7C1D96981B5FD5180045FE3D /* soap-server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-server.h"; sourceTree = "<group>"; };
+		7C1D96991B5FD5180045FE3D /* soap-service.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-service.c"; sourceTree = "<group>"; };
+		7C1D969A1B5FD5180045FE3D /* soap-service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-service.h"; sourceTree = "<group>"; };
+		7C1D969B1B5FD5180045FE3D /* soap-xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "soap-xml.c"; sourceTree = "<group>"; };
+		7C1D969C1B5FD5180045FE3D /* soap-xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "soap-xml.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +98,36 @@
 		2871404C1B5FD2EA006E714F /* soap */ = {
 			isa = PBXGroup;
 			children = (
+				7C1D96881B5FD5180045FE3D /* libcsoap */,
 				2871404D1B5FD310006E714F /* SoapManager.c */,
 				2871404E1B5FD310006E714F /* SoapManager.h */,
 			);
 			path = soap;
+			sourceTree = "<group>";
+		};
+		7C1D96881B5FD5180045FE3D /* libcsoap */ = {
+			isa = PBXGroup;
+			children = (
+				7C1D968B1B5FD5180045FE3D /* soap-admin.c */,
+				7C1D968C1B5FD5180045FE3D /* soap-admin.h */,
+				7C1D968D1B5FD5180045FE3D /* soap-client.c */,
+				7C1D968E1B5FD5180045FE3D /* soap-client.h */,
+				7C1D968F1B5FD5180045FE3D /* soap-ctx.c */,
+				7C1D96901B5FD5180045FE3D /* soap-ctx.h */,
+				7C1D96911B5FD5180045FE3D /* soap-env.c */,
+				7C1D96921B5FD5180045FE3D /* soap-env.h */,
+				7C1D96931B5FD5180045FE3D /* soap-fault.c */,
+				7C1D96941B5FD5180045FE3D /* soap-fault.h */,
+				7C1D96951B5FD5180045FE3D /* soap-router.c */,
+				7C1D96961B5FD5180045FE3D /* soap-router.h */,
+				7C1D96971B5FD5180045FE3D /* soap-server.c */,
+				7C1D96981B5FD5180045FE3D /* soap-server.h */,
+				7C1D96991B5FD5180045FE3D /* soap-service.c */,
+				7C1D969A1B5FD5180045FE3D /* soap-service.h */,
+				7C1D969B1B5FD5180045FE3D /* soap-xml.c */,
+				7C1D969C1B5FD5180045FE3D /* soap-xml.h */,
+			);
+			path = libcsoap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,8 +186,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C1D96A01B5FD5180045FE3D /* soap-env.c in Sources */,
+				7C1D969D1B5FD5180045FE3D /* soap-admin.c in Sources */,
+				7C1D96A41B5FD5180045FE3D /* soap-service.c in Sources */,
+				7C1D96A31B5FD5180045FE3D /* soap-server.c in Sources */,
+				7C1D969F1B5FD5180045FE3D /* soap-ctx.c in Sources */,
+				7C1D969E1B5FD5180045FE3D /* soap-client.c in Sources */,
+				7C1D96A51B5FD5180045FE3D /* soap-xml.c in Sources */,
 				2871404F1B5FD310006E714F /* SoapManager.c in Sources */,
+				7C1D96A11B5FD5180045FE3D /* soap-fault.c in Sources */,
 				2871404A1B5FD148006E714F /* main.c in Sources */,
+				7C1D96A21B5FD5180045FE3D /* soap-router.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
