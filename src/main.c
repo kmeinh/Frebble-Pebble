@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 com. All rights reserved.
 //
 
+#include <pebble.h>
 #include <stdio.h>
 #include "soap/SoapManager.h"
 
