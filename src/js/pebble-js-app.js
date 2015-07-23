@@ -2,20 +2,26 @@ var maxUpstream;
 var maxDownstream;
 var availableUP;
 var availableDownstream;
-
+var uptime;
+var DictionaryEnum = Object.freeze({
+	MAX_UP : 0,
+	MAX_DOWN : 1,
+	AVAILABLE_UP : 2,
+	AVAILABLE_DOWN : 3,
+	UPTIME : 4
+});
 
 function watchfaceReady(){
 	fetchMaxUpAndDown();
 	fetchCurrentUpAndDown();
-	console.log(parseInt(maxUpstream));
-	console.log(parseInt(maxDownstream));
-	console.log(parseInt(availableUP));
-	console.log(parseInt(availableDownstream));
+	fetchUptime();
+	console.log("uptime"+parseInt(uptime));
 	var dictionary = {
-  		0: parseInt(maxUpstream),
-  		1: parseInt(maxDownstream),
-  		2: parseInt(availableUP),
-  		3: parseInt(availableDownstream)
+  		0 : parseInt(maxUpstream),
+  		1 : parseInt(maxDownstream),
+  		2 : parseInt(availableUP),
+  		3 : parseInt(availableDownstream),
+  		4 : parseInt(uptime)
 	};
 	Pebble.sendAppMessage(dictionary,function(e){},function(e){});
 }
@@ -30,6 +36,11 @@ function fetchCurrentUpAndDown(){
 	commonLinkPorpertiesXML = callFritzAction("http://fritz.box:49000/igdupnp/control/WANCommonIFC1","urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1","GetAddonInfos");
 	availableUP=commonLinkPorpertiesXML.match(/<NewByteSendRate>(.*?)<\/NewByteSendRate>/)[1];
 	availableDownstream=commonLinkPorpertiesXML.match(/<NewByteReceiveRate>(.*?)<\/NewByteReceiveRate>/)[1];
+}
+
+function fetchUptime(){
+	statusInfoXML= callFritzAction("http://fritz.box:49000/igdupnp/control/WANIPConn1","urn:schemas-upnp-org:service:WANIPConnection:1","GetStatusInfo");
+	uptime=statusInfoXML.match(/<NewUptime>(.*?)<\/NewUptime>/)[1];
 }
 
 function callFritzAction(url, urn, action){
