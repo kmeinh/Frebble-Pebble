@@ -78,6 +78,7 @@ static void deinit() {
   deinitWindow(s_main_window);
   window_destroy(s_main_window);
   tick_timer_service_unsubscribe();
+  battery_state_service_unsubscribe();
 }
 
 int main(void) {
