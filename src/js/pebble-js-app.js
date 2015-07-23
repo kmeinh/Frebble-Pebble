@@ -3,6 +3,7 @@ var maxDownstream;
 var availableUP;
 var availableDownstream;
 var uptime;
+var connectionStatus;
 var DictionaryEnum = Object.freeze({
 	MAX_UP : 0,
 	MAX_DOWN : 1,
@@ -14,14 +15,15 @@ var DictionaryEnum = Object.freeze({
 function watchfaceReady(){
 	fetchMaxUpAndDown();
 	fetchCurrentUpAndDown();
-	fetchUptime();
-	console.log("uptime"+parseInt(uptime));
+	fetchUptimeAndConnectionStatus();
+	console.log("status"+connectionStatus);
 	var dictionary = {
   		0 : parseInt(maxUpstream),
   		1 : parseInt(maxDownstream),
   		2 : parseInt(availableUP),
   		3 : parseInt(availableDownstream),
-  		4 : parseInt(uptime)
+  		4 : parseInt(uptime),
+  		5 : connectionStatus
 	};
 	Pebble.sendAppMessage(dictionary,function(e){},function(e){});
 }
@@ -38,9 +40,10 @@ function fetchCurrentUpAndDown(){
 	availableDownstream=commonLinkPorpertiesXML.match(/<NewByteReceiveRate>(.*?)<\/NewByteReceiveRate>/)[1];
 }
 
-function fetchUptime(){
+function fetchUptimeAndConnectionStatus(){
 	statusInfoXML= callFritzAction("http://fritz.box:49000/igdupnp/control/WANIPConn1","urn:schemas-upnp-org:service:WANIPConnection:1","GetStatusInfo");
-	uptime=statusInfoXML.match(/<NewUptime>(.*?)<\/NewUptime>/)[1];
+	uptime = statusInfoXML.match(/<NewUptime>(.*?)<\/NewUptime>/)[1];
+	connectionStatus = statusInfoXML.match(/<NewConnectionStatus>(.*?)<\/NewConnectionStatus>/)[1];
 }
 
 function callFritzAction(url, urn, action){
