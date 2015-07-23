@@ -1,8 +1,4 @@
 #include "appMessageManager.h"
-uint32_t currentUpstreamInBits=0;
-uint32_t currentDownstreamInBits=0;
-uint32_t availableUpstreamInBytes=0;
-uint32_t availableDownstreamInBytes=0;
 
 void initAppMessageManager() {
   app_message_register_inbox_received(inbox_received_callback);
@@ -15,6 +11,11 @@ void initAppMessageManager() {
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
   APP_LOG(APP_LOG_LEVEL_INFO, "received");
   Tuple *tuple = dict_read_first(iterator);
+
+  uint32_t currentUpstreamInBits=0;
+  uint32_t currentDownstreamInBits=0;
+  uint32_t availableUpstreamInBytes=0;
+  uint32_t availableDownstreamInBytes=0;
 
   while (tuple != NULL) {
     switch(tuple->key) {

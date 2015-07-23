@@ -2,6 +2,9 @@
 #include "windowManager.h"
 #include "appMessageManager.h"
 
+#define defaultTimerTicks 5
+static int timerTicksUpdate = 0;
+
 static void timeChanged() {
   time_t temp = time(NULL);
   struct tm *tick_time = localtime(&temp);
@@ -23,12 +26,26 @@ static void dateChanged() {
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+  // log memory usage
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Memory usage used: %d, free: %d", heap_bytes_used(), heap_bytes_free());
   if (units_changed == SECOND_UNIT) {
     timeChanged();
   }
   if (units_changed == DAY_UNIT || units_changed == MONTH_UNIT || units_changed == YEAR_UNIT) {
     dateChanged();
   }
+  if (units_changed == SECOND_UNIT ) {
+    if ((timerTicksUpdate--) == 0) {
+      DictionaryIterator *iterator;
+      app_message_outbox_begin(&iterator);
+      app_message_outbox_send();
+      timerTicksUpdate = defaultTimerTicks;
+    } 
+  }
+}
+
+static void battery_handler(BatteryChargeState charge_state) {
+
 }
 
 static void main_window_load(Window *window) {
@@ -36,6 +53,7 @@ static void main_window_load(Window *window) {
   initWindow(window);
   initAppMessageManager();
   dateChanged();
+  timeChanged();
 }
 
 static void main_window_unload(Window *window) {
@@ -46,6 +64,7 @@ static void init() {
   s_main_window = window_create();
 
   tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
+  battery_state_service_subscribe(battery_handler);
 
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,

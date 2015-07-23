@@ -28,3 +28,4 @@ void updateBandwidthStream(uint32_t bandwidthInBits, uint32_t availableInBytes, 
 void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits);
 void updateDate(char *formattedTime, int row);
 void drawBars(float percentage, int row);
+void drawBatteryStatue(float percentage);

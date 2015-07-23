@@ -17,15 +17,15 @@ void initWindow(Window *window) {
       text_layer_set_background_color(label, GColorClear);
       text_layer_set_font(label, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
       text_layer_set_text_alignment(label, GTextAlignmentCenter);
-      text_layer_set_text(label, "A");
+      text_layer_set_text(label, "");
       layer_add_child(window_get_root_layer(window), (Layer*) label);
       textGrid[y][x] = label;
       textBuffer[y][x][1] = '\0';
     }
   }
   // InverterLayer
-  downStreamInverterLayer = inverter_layer_create(GRect(0, GRID_HEIGHT * ROW_DOWNSTREAM, NUM_X * GRID_WIDTH, GRID_HEIGHT));
-  upStreamInverterLayer = inverter_layer_create(GRect(0, GRID_HEIGHT * ROW_UPSTREAM, NUM_X * GRID_WIDTH, GRID_HEIGHT));
+  downStreamInverterLayer = inverter_layer_create(GRect(0, GRID_HEIGHT * ROW_DOWNSTREAM, 0, GRID_HEIGHT));
+  upStreamInverterLayer = inverter_layer_create(GRect(0, GRID_HEIGHT * ROW_UPSTREAM, 0, GRID_HEIGHT));
   layer_add_child(window_get_root_layer(window), inverter_layer_get_layer(downStreamInverterLayer));
   layer_add_child(window_get_root_layer(window), inverter_layer_get_layer(upStreamInverterLayer));
 }
@@ -59,10 +59,12 @@ void drawBars(float percentage, int row) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "percentage: %d, row: %d", (int)(percentage * SCREEN_WIDTH), row);
   if (row == ROW_UPSTREAM) {
     layer_remove_from_parent(inverter_layer_get_layer(upStreamInverterLayer));
+    inverter_layer_destroy(upStreamInverterLayer);
     upStreamInverterLayer = inverter_layer_create(GRect(0, GRID_HEIGHT * ROW_UPSTREAM, (percentage * SCREEN_WIDTH), GRID_HEIGHT));
     layer_add_child(window_get_root_layer(s_main_window), inverter_layer_get_layer(upStreamInverterLayer)); 
   } else {
     layer_remove_from_parent(inverter_layer_get_layer(downStreamInverterLayer));
+    inverter_layer_destroy(downStreamInverterLayer);
     downStreamInverterLayer = inverter_layer_create(GRect(0, GRID_HEIGHT * ROW_DOWNSTREAM, (percentage * SCREEN_WIDTH), GRID_HEIGHT));
     layer_add_child(window_get_root_layer(s_main_window), inverter_layer_get_layer(downStreamInverterLayer)); 
   }
@@ -84,6 +86,10 @@ void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits) {
     // display: 010MB
     snprintf(stream, 6, "%03dNB", (int) roundf(kb/1024));
   }  
+}
+
+void drawBatteryStatue(float percentage) {
+  
 }
 
 void deinitWindow(Window *window) {
