@@ -7,16 +7,16 @@ var availableDownstream;
 function watchfaceReady(){
 	fetchMaxUpAndDown();
 	fetchCurrentUpAndDown();
-	console.log(maxUpstream);
-	console.log(maxDownstream);
-	console.log(availableUP);
-	console.log(availableDownstream);
+	console.log(parseInt(maxUpstream));
+	console.log(parseInt(maxDownstream));
+	console.log(parseInt(availableUP));
+	console.log(parseInt(availableDownstream));
 	var dictionary = {
-  0: maxUpstream,
-  1: maxDownstream,
-  2: availableUP,
-  3: availableDownstream
-};
+  		0: parseInt(maxUpstream),
+  		1: parseInt(maxDownstream),
+  		2: parseInt(availableUP),
+  		3: parseInt(availableDownstream)
+	};
 	Pebble.sendAppMessage(dictionary,function(e){},function(e){});
 }
 

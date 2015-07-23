@@ -18,7 +18,6 @@
     "watchface": true
   },
   "targetPlatforms": [
-    "aplite",
-    "basalt"
+    "aplite"
   ]
 }

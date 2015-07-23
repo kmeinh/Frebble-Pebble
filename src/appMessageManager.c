@@ -1,4 +1,8 @@
 #include "appMessageManager.h"
+uint32_t currentUpstreamInBits=0;
+uint32_t currentDownstreamInBits=0;
+uint32_t availableUpstreamInBytes=0;
+uint32_t availableDownstreamInBytes=0;
 
 void initAppMessageManager() {
   app_message_register_inbox_received(inbox_received_callback);
@@ -15,20 +19,27 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   while (tuple != NULL) {
     switch(tuple->key) {
       case MAX_UP:
-
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received max up: %li", tuple->value->int32);
+        currentUpstreamInBits=(uint32_t)tuple->value->int32;
         break;
       case MAX_DOWN:
-        updateDownStream((int) tuple->value->int32));
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received max down: %li", tuple->value->int32);
+        currentDownstreamInBits=(uint32_t)tuple->value->int32;
         break;
       case AVAILABLE_UP:
-
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received available up: %li", tuple->value->int32);
+        availableUpstreamInBytes=(uint32_t)tuple->value->int32;
         break;
       case AVAILABLE_DOWN:
-
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received available down: %li", tuple->value->int32);
+        availableDownstreamInBytes=(uint32_t)tuple->value->int32;
         break;
     }
     tuple = dict_read_next(iterator);
   }
+  updateBandwidthStream(currentUpstreamInBits, availableUpstreamInBytes, ROW_UPSTREAM);
+  updateBandwidthStream(currentDownstreamInBits, availableDownstreamInBytes, ROW_DOWNSTREAM);
+
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {
