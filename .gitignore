@@ -19,8 +19,8 @@ DerivedData
 *.DS_Store
 *.backup
 deploy.sh
-/build/*
-/build
+
+build
 #CocoaPods
 Pods
 
