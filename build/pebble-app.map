@@ -137,8 +137,6 @@ Discarded input sections
  .text.atol     0x0000000000000000        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
  .text.battery_state_service_peek
                 0x0000000000000000        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
- .text.battery_state_service_subscribe
-                0x0000000000000000        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
  .text.battery_state_service_unsubscribe
                 0x0000000000000000        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
  .text.bitmap_layer_create
@@ -712,7 +710,7 @@ LOAD /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none
  .note.gnu.build-id
                 0x0000000000000084       0x24 linker stubs
 
-.text           0x00000000000000a8     0x1a31
+.text           0x00000000000000a8     0x1a4d
  *(.text)
  .text          0x00000000000000a8       0x14 /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
  .text          0x00000000000000bc      0x370 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
@@ -792,240 +790,244 @@ LOAD /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none
  .text.initAppMessageManager
                 0x00000000000010a4       0x48 src/appMessageManager.c.9.o
                 0x00000000000010a4                initAppMessageManager
+ .text.battery_handler
+                0x00000000000010ec        0x6 src/main.c.9.o
  .text.main_window_unload
-                0x00000000000010ec        0x2 src/main.c.9.o
- *fill*         0x00000000000010ee        0x2 
+                0x00000000000010f2        0x2 src/main.c.9.o
  .text.dateChanged
-                0x00000000000010f0       0x4c src/main.c.9.o
+                0x00000000000010f4       0x4c src/main.c.9.o
  .text.timeChanged
-                0x000000000000113c       0x60 src/main.c.9.o
+                0x0000000000001140       0x60 src/main.c.9.o
  .text.main_window_load
-                0x000000000000119c       0x20 src/main.c.9.o
+                0x00000000000011a0       0x20 src/main.c.9.o
  .text.tick_handler
-                0x00000000000011bc       0x74 src/main.c.9.o
+                0x00000000000011c0       0x74 src/main.c.9.o
  .text.startup.main
-                0x0000000000001230       0x78 src/main.c.9.o
-                0x0000000000001230                main
+                0x0000000000001234       0x84 src/main.c.9.o
+                0x0000000000001234                main
  .text.initWindow
-                0x00000000000012a8      0x144 src/windowManager.c.9.o
-                0x00000000000012a8                initWindow
+                0x00000000000012b8      0x144 src/windowManager.c.9.o
+                0x00000000000012b8                initWindow
  .text.updateDate
-                0x00000000000013ec       0x58 src/windowManager.c.9.o
-                0x00000000000013ec                updateDate
+                0x00000000000013fc       0x58 src/windowManager.c.9.o
+                0x00000000000013fc                updateDate
  .text.drawBars
-                0x0000000000001444       0xd4 src/windowManager.c.9.o
-                0x0000000000001444                drawBars
+                0x0000000000001454       0xd4 src/windowManager.c.9.o
+                0x0000000000001454                drawBars
  .text.formatBandWidthInBitsForDisplay
-                0x0000000000001518      0x100 src/windowManager.c.9.o
-                0x0000000000001518                formatBandWidthInBitsForDisplay
+                0x0000000000001528      0x100 src/windowManager.c.9.o
+                0x0000000000001528                formatBandWidthInBitsForDisplay
  .text.updateBandwidthStream
-                0x0000000000001618       0xa8 src/windowManager.c.9.o
-                0x0000000000001618                updateBandwidthStream
+                0x0000000000001628       0xa8 src/windowManager.c.9.o
+                0x0000000000001628                updateBandwidthStream
  .text.deinitWindow
-                0x00000000000016c0       0x50 src/windowManager.c.9.o
-                0x00000000000016c0                deinitWindow
+                0x00000000000016d0       0x50 src/windowManager.c.9.o
+                0x00000000000016d0                deinitWindow
  .text.app_event_loop
-                0x0000000000001710        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001710                app_event_loop
- .text.app_log  0x000000000000171c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000171c                app_log
+                0x0000000000001720        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001720                app_event_loop
+ .text.app_log  0x000000000000172c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000172c                app_log
  .text.app_message_open
-                0x0000000000001728        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001728                app_message_open
+                0x0000000000001738        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001738                app_message_open
+ .text.battery_state_service_subscribe
+                0x0000000000001744        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001744                battery_state_service_subscribe
  .text.clock_is_24h_style
-                0x0000000000001734        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001734                clock_is_24h_style
+                0x0000000000001750        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001750                clock_is_24h_style
  .text.dict_read_first
-                0x0000000000001740        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001740                dict_read_first
+                0x000000000000175c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000175c                dict_read_first
  .text.dict_read_next
-                0x000000000000174c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000174c                dict_read_next
+                0x0000000000001768        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001768                dict_read_next
  .text.fonts_get_system_font
-                0x0000000000001758        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001758                fonts_get_system_font
+                0x0000000000001774        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001774                fonts_get_system_font
  .text.inverter_layer_create
-                0x0000000000001764        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001764                inverter_layer_create
+                0x0000000000001780        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001780                inverter_layer_create
  .text.inverter_layer_destroy
-                0x0000000000001770        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001770                inverter_layer_destroy
+                0x000000000000178c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000178c                inverter_layer_destroy
  .text.inverter_layer_get_layer
-                0x000000000000177c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000177c                inverter_layer_get_layer
+                0x0000000000001798        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001798                inverter_layer_get_layer
  .text.layer_add_child
-                0x0000000000001788        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001788                layer_add_child
+                0x00000000000017a4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017a4                layer_add_child
  .text.layer_remove_from_parent
-                0x0000000000001794        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001794                layer_remove_from_parent
+                0x00000000000017b0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017b0                layer_remove_from_parent
  .text.localtime
-                0x00000000000017a0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017a0                localtime
- .text.memset   0x00000000000017ac        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017ac                memset
+                0x00000000000017bc        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017bc                localtime
+ .text.memset   0x00000000000017c8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017c8                memset
  .text.snprintf
-                0x00000000000017b8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017b8                snprintf
+                0x00000000000017d4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017d4                snprintf
  .text.strftime
-                0x00000000000017c4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017c4                strftime
+                0x00000000000017e0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017e0                strftime
  .text.text_layer_create
-                0x00000000000017d0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017d0                text_layer_create
+                0x00000000000017ec        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017ec                text_layer_create
  .text.text_layer_destroy
-                0x00000000000017dc        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017dc                text_layer_destroy
+                0x00000000000017f8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000017f8                text_layer_destroy
  .text.text_layer_set_background_color
-                0x00000000000017e8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017e8                text_layer_set_background_color
+                0x0000000000001804        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001804                text_layer_set_background_color
  .text.text_layer_set_font
-                0x00000000000017f4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000017f4                text_layer_set_font
+                0x0000000000001810        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001810                text_layer_set_font
  .text.text_layer_set_text
-                0x0000000000001800        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001800                text_layer_set_text
+                0x000000000000181c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000181c                text_layer_set_text
  .text.text_layer_set_text_alignment
-                0x000000000000180c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000180c                text_layer_set_text_alignment
+                0x0000000000001828        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001828                text_layer_set_text_alignment
  .text.text_layer_set_text_color
-                0x0000000000001818        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001818                text_layer_set_text_color
+                0x0000000000001834        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001834                text_layer_set_text_color
  .text.tick_timer_service_subscribe
-                0x0000000000001824        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001824                tick_timer_service_subscribe
+                0x0000000000001840        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001840                tick_timer_service_subscribe
  .text.tick_timer_service_unsubscribe
-                0x0000000000001830        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001830                tick_timer_service_unsubscribe
- .text.time     0x000000000000183c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000183c                time
+                0x000000000000184c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000184c                tick_timer_service_unsubscribe
+ .text.time     0x0000000000001858        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001858                time
  .text.window_create
-                0x0000000000001848        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001848                window_create
+                0x0000000000001864        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001864                window_create
  .text.window_destroy
-                0x0000000000001854        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001854                window_destroy
+                0x0000000000001870        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001870                window_destroy
  .text.window_get_root_layer
-                0x0000000000001860        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001860                window_get_root_layer
+                0x000000000000187c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000187c                window_get_root_layer
  .text.window_set_background_color
-                0x000000000000186c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000186c                window_set_background_color
+                0x0000000000001888        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001888                window_set_background_color
  .text.window_set_window_handlers
-                0x0000000000001878        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001878                window_set_window_handlers
+                0x0000000000001894        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001894                window_set_window_handlers
  .text.window_stack_push
-                0x0000000000001884        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001884                window_stack_push
+                0x00000000000018a0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018a0                window_stack_push
  .text.app_message_inbox_size_maximum
-                0x0000000000001890        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x0000000000001890                app_message_inbox_size_maximum
+                0x00000000000018ac        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018ac                app_message_inbox_size_maximum
  .text.app_message_outbox_begin
-                0x000000000000189c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x000000000000189c                app_message_outbox_begin
+                0x00000000000018b8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018b8                app_message_outbox_begin
  .text.app_message_outbox_send
-                0x00000000000018a8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018a8                app_message_outbox_send
+                0x00000000000018c4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018c4                app_message_outbox_send
  .text.app_message_outbox_size_maximum
-                0x00000000000018b4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018b4                app_message_outbox_size_maximum
+                0x00000000000018d0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018d0                app_message_outbox_size_maximum
  .text.app_message_register_inbox_dropped
-                0x00000000000018c0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018c0                app_message_register_inbox_dropped
+                0x00000000000018dc        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018dc                app_message_register_inbox_dropped
  .text.app_message_register_inbox_received
-                0x00000000000018cc        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018cc                app_message_register_inbox_received
+                0x00000000000018e8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018e8                app_message_register_inbox_received
  .text.app_message_register_outbox_failed
-                0x00000000000018d8        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018d8                app_message_register_outbox_failed
+                0x00000000000018f4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x00000000000018f4                app_message_register_outbox_failed
  .text.app_message_register_outbox_sent
-                0x00000000000018e4        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018e4                app_message_register_outbox_sent
+                0x0000000000001900        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001900                app_message_register_outbox_sent
  .text.heap_bytes_free
-                0x00000000000018f0        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018f0                heap_bytes_free
+                0x000000000000190c        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x000000000000190c                heap_bytes_free
  .text.heap_bytes_used
-                0x00000000000018fc        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
-                0x00000000000018fc                heap_bytes_used
- .text.roundf   0x0000000000001908       0x50 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_round.o)
-                0x0000000000001908                roundf
+                0x0000000000001918        0xc /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+                0x0000000000001918                heap_bytes_used
+ .text.roundf   0x0000000000001924       0x50 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_round.o)
+                0x0000000000001924                roundf
  *(.rodata)
- .rodata        0x0000000000001958       0x10 src/windowManager.c.9.o
+ .rodata        0x0000000000001974       0x10 src/windowManager.c.9.o
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000001968       0xd3 src/appMessageManager.c.9.o
+                0x0000000000001984       0xd3 src/appMessageManager.c.9.o
  .rodata.str1.1
-                0x0000000000001a3b       0x43 src/main.c.9.o
+                0x0000000000001a57       0x43 src/main.c.9.o
  .rodata.str1.1
-                0x0000000000001a7e       0x5b src/windowManager.c.9.o
+                0x0000000000001a9a       0x5b src/windowManager.c.9.o
                                          0x5c (size before relaxing)
 
-.glue_7         0x0000000000001adc        0x0
+.glue_7         0x0000000000001af8        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000001adc        0x0
+.glue_7t        0x0000000000001af8        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000001adc        0x0
+.vfp11_veneer   0x0000000000001af8        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000001adc        0x0
+.v4_bx          0x0000000000001af8        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000001adc        0x0
+.iplt           0x0000000000001af8        0x0
  .iplt          0x0000000000000000        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.rel.dyn        0x0000000000001adc        0x0
+.rel.dyn        0x0000000000001af8        0x0
  .rel.iplt      0x0000000000000000        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .rel.got       0x0000000000000000        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.data           0x0000000000001adc        0x4
+.data           0x0000000000001af8        0x4
  *(.data)
- .data          0x0000000000001adc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
- .data          0x0000000000001adc        0x4 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000001adc                __dso_handle
- .data          0x0000000000001ae0        0x0 src/appMessageManager.c.9.o
- .data          0x0000000000001ae0        0x0 src/main.c.9.o
- .data          0x0000000000001ae0        0x0 src/windowManager.c.9.o
- .data          0x0000000000001ae0        0x0 aplite/appinfo.auto.c.9.o
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
- .data          0x0000000000001ae0        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_round.o)
+ .data          0x0000000000001af8        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
+ .data          0x0000000000001af8        0x4 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000001af8                __dso_handle
+ .data          0x0000000000001afc        0x0 src/appMessageManager.c.9.o
+ .data          0x0000000000001afc        0x0 src/main.c.9.o
+ .data          0x0000000000001afc        0x0 src/windowManager.c.9.o
+ .data          0x0000000000001afc        0x0 aplite/appinfo.auto.c.9.o
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite/lib/libpebble.a(tmpH7rUz3pebble.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
+ .data          0x0000000000001afc        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_round.o)
  *(.data.*)
 
-.igot.plt       0x0000000000001ae0        0x0
+.igot.plt       0x0000000000001afc        0x0
  .igot.plt      0x0000000000000000        0x0 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got            0x0000000000001ae0        0xc
- .got           0x0000000000001ae0        0xc /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+.got            0x0000000000001afc        0xc
+ .got           0x0000000000001afc        0xc /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got.plt        0x0000000000001aec        0xc
- .got.plt       0x0000000000001aec        0xc /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000001aec                _GLOBAL_OFFSET_TABLE_
+.got.plt        0x0000000000001b08        0xc
+ .got.plt       0x0000000000001b08        0xc /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000001b08                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x0000000000001af8       0xe8
+.bss            0x0000000000001b14       0xe8
  *(.bss)
  *(.bss.*)
  .bss.timerTicksUpdate
-                0x0000000000001af8        0x4 src/main.c.9.o
+                0x0000000000001b14        0x4 src/main.c.9.o
  .bss.downStreamInverterLayer
-                0x0000000000001afc        0x4 src/windowManager.c.9.o
+                0x0000000000001b18        0x4 src/windowManager.c.9.o
  .bss.upStreamInverterLayer
-                0x0000000000001b00        0x4 src/windowManager.c.9.o
- COMMON         0x0000000000001b04        0x4 src/appMessageManager.c.9.o
-                0x0000000000001b04                s_main_window
- COMMON         0x0000000000001b08       0xd8 src/windowManager.c.9.o
-                0x0000000000001b08                textBuffer
-                0x0000000000001b50                textGrid
+                0x0000000000001b1c        0x4 src/windowManager.c.9.o
+ COMMON         0x0000000000001b20        0x4 src/appMessageManager.c.9.o
+                0x0000000000001b20                s_main_window
+ COMMON         0x0000000000001b24       0xd8 src/windowManager.c.9.o
+                0x0000000000001b24                textBuffer
+                0x0000000000001b6c                textGrid
 
 .ARM.attributes
                 0x0000000000000000       0x27
@@ -1092,21 +1094,21 @@ DISCARD         0x0000000000000000      0x724
  .debug_frame   0x00000000000006fc       0x28 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_round.o)
  libgcc.a(*)
  *(.eh_frame)
-OUTPUT(/Users/kondeichmann/Documents/Projects/Frebble-Pebble/build/aplite/pebble-app.elf elf32-littlearm)
+OUTPUT(/Users/tobiaslarscheid/git/Frebble-Pebble/build/aplite/pebble-app.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x254e
+.debug_info     0x0000000000000000     0x25f5
  .debug_info    0x0000000000000000      0x7c6 src/appMessageManager.c.9.o
- .debug_info    0x00000000000007c6      0xad3 src/main.c.9.o
- .debug_info    0x0000000000001299      0x9b8 src/windowManager.c.9.o
- .debug_info    0x0000000000001c51      0x335 aplite/appinfo.auto.c.9.o
- .debug_info    0x0000000000001f86       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x000000000000203f       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x00000000000020f8       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
- .debug_info    0x00000000000021b1       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
- .debug_info    0x000000000000226a       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
- .debug_info    0x0000000000002323       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
- .debug_info    0x00000000000023dc       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
- .debug_info    0x0000000000002495       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
+ .debug_info    0x00000000000007c6      0xb7a src/main.c.9.o
+ .debug_info    0x0000000000001340      0x9b8 src/windowManager.c.9.o
+ .debug_info    0x0000000000001cf8      0x335 aplite/appinfo.auto.c.9.o
+ .debug_info    0x000000000000202d       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x00000000000020e6       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x000000000000219f       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .debug_info    0x0000000000002258       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .debug_info    0x0000000000002311       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
+ .debug_info    0x00000000000023ca       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
+ .debug_info    0x0000000000002483       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
+ .debug_info    0x000000000000253c       0xb9 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
 
 .debug_abbrev   0x0000000000000000      0x8fb
  .debug_abbrev  0x0000000000000000      0x217 src/appMessageManager.c.9.o
@@ -1122,67 +1124,67 @@ OUTPUT(/Users/kondeichmann/Documents/Projects/Frebble-Pebble/build/aplite/pebble
  .debug_abbrev  0x00000000000008d3       0x14 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
  .debug_abbrev  0x00000000000008e7       0x14 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
 
-.debug_loc      0x0000000000000000      0x765
+.debug_loc      0x0000000000000000      0x785
  .debug_loc     0x0000000000000000      0x1fc src/appMessageManager.c.9.o
- .debug_loc     0x00000000000001fc      0x154 src/main.c.9.o
- .debug_loc     0x0000000000000350      0x415 src/windowManager.c.9.o
+ .debug_loc     0x00000000000001fc      0x174 src/main.c.9.o
+ .debug_loc     0x0000000000000370      0x415 src/windowManager.c.9.o
 
-.debug_aranges  0x0000000000000000      0x1f0
+.debug_aranges  0x0000000000000000      0x1f8
  .debug_aranges
                 0x0000000000000000       0x40 src/appMessageManager.c.9.o
  .debug_aranges
-                0x0000000000000040       0x48 src/main.c.9.o
+                0x0000000000000040       0x50 src/main.c.9.o
  .debug_aranges
-                0x0000000000000088       0x50 src/windowManager.c.9.o
+                0x0000000000000090       0x50 src/windowManager.c.9.o
  .debug_aranges
-                0x00000000000000d8       0x18 aplite/appinfo.auto.c.9.o
+                0x00000000000000e0       0x18 aplite/appinfo.auto.c.9.o
  .debug_aranges
-                0x00000000000000f0       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+                0x00000000000000f8       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
  .debug_aranges
-                0x0000000000000110       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+                0x0000000000000118       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
  .debug_aranges
-                0x0000000000000130       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
+                0x0000000000000138       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
  .debug_aranges
-                0x0000000000000150       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+                0x0000000000000158       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
  .debug_aranges
-                0x0000000000000170       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
+                0x0000000000000178       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
  .debug_aranges
-                0x0000000000000190       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
+                0x0000000000000198       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
  .debug_aranges
-                0x00000000000001b0       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
+                0x00000000000001b8       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
  .debug_aranges
-                0x00000000000001d0       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
+                0x00000000000001d8       0x20 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
 
-.debug_ranges   0x0000000000000000      0x1b8
+.debug_ranges   0x0000000000000000      0x1c0
  .debug_ranges  0x0000000000000000       0x30 src/appMessageManager.c.9.o
- .debug_ranges  0x0000000000000030       0x58 src/main.c.9.o
- .debug_ranges  0x0000000000000088      0x130 src/windowManager.c.9.o
+ .debug_ranges  0x0000000000000030       0x60 src/main.c.9.o
+ .debug_ranges  0x0000000000000090      0x130 src/windowManager.c.9.o
 
-.debug_line     0x0000000000000000     0x1227
+.debug_line     0x0000000000000000     0x123a
  .debug_line    0x0000000000000000      0x1b9 src/appMessageManager.c.9.o
- .debug_line    0x00000000000001b9      0x2bf src/main.c.9.o
- .debug_line    0x0000000000000478      0x32f src/windowManager.c.9.o
- .debug_line    0x00000000000007a7      0x12d aplite/appinfo.auto.c.9.o
- .debug_line    0x00000000000008d4      0x20a /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x0000000000000ade      0x226 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x0000000000000d04      0x10c /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
- .debug_line    0x0000000000000e10       0x86 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
- .debug_line    0x0000000000000e96       0x9a /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
- .debug_line    0x0000000000000f30      0x128 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
- .debug_line    0x0000000000001058      0x149 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
- .debug_line    0x00000000000011a1       0x86 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
+ .debug_line    0x00000000000001b9      0x2d2 src/main.c.9.o
+ .debug_line    0x000000000000048b      0x32f src/windowManager.c.9.o
+ .debug_line    0x00000000000007ba      0x12d aplite/appinfo.auto.c.9.o
+ .debug_line    0x00000000000008e7      0x20a /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x0000000000000af1      0x226 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x0000000000000d17      0x10c /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .debug_line    0x0000000000000e23       0x86 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .debug_line    0x0000000000000ea9       0x9a /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_truncdfsf2.o)
+ .debug_line    0x0000000000000f43      0x128 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubsf3.o)
+ .debug_line    0x000000000000106b      0x149 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivsf3.o)
+ .debug_line    0x00000000000011b4       0x86 /usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixsfsi.o)
 
-.debug_str      0x0000000000000000      0xe17
- .debug_str     0x0000000000000000      0x5ff src/appMessageManager.c.9.o
-                                        0x66c (size before relaxing)
- .debug_str     0x00000000000005ff      0x2fe src/main.c.9.o
-                                        0x715 (size before relaxing)
- .debug_str     0x00000000000008fd      0x2ca src/windowManager.c.9.o
-                                        0x50d (size before relaxing)
- .debug_str     0x0000000000000bc7      0x250 aplite/appinfo.auto.c.9.o
-                                        0x34a (size before relaxing)
+.debug_str      0x0000000000000000      0xe95
+ .debug_str     0x0000000000000000      0x5f3 src/appMessageManager.c.9.o
+                                        0x660 (size before relaxing)
+ .debug_str     0x00000000000005f3      0x388 src/main.c.9.o
+                                        0x793 (size before relaxing)
+ .debug_str     0x000000000000097b      0x2ca src/windowManager.c.9.o
+                                        0x501 (size before relaxing)
+ .debug_str     0x0000000000000c45      0x250 aplite/appinfo.auto.c.9.o
+                                        0x33e (size before relaxing)
 
-.debug_frame    0x0000000000000000      0x22c
+.debug_frame    0x0000000000000000      0x240
  .debug_frame   0x0000000000000000       0x80 src/appMessageManager.c.9.o
- .debug_frame   0x0000000000000080       0xb4 src/main.c.9.o
- .debug_frame   0x0000000000000134       0xf8 src/windowManager.c.9.o
+ .debug_frame   0x0000000000000080       0xc8 src/main.c.9.o
+ .debug_frame   0x0000000000000148       0xf8 src/windowManager.c.9.o

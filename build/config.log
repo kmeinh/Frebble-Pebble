@@ -1,13 +1,13 @@
-# project  configured on Thu Jul 23 09:39:16 2015 by
+# project  configured on Thu Jul 23 09:47:54 2015 by
 # waf 1.7.11 (abi 98, python 2070af0 on darwin)
 # using /usr/local/Cellar/pebble-sdk/3.1/Pebble/waf configure build
 #
 ----------------------------------------
 Setting top to
-/Users/kondeichmann/Documents/Projects/Frebble-Pebble
+/Users/tobiaslarscheid/git/Frebble-Pebble
 ----------------------------------------
 Setting out to
-/Users/kondeichmann/Documents/Projects/Frebble-Pebble/build
+/Users/tobiaslarscheid/git/Frebble-Pebble/build
 ----------------------------------------
 Found Pebble SDK for aplite in:
 /usr/local/Cellar/pebble-sdk/3.1/Pebble/aplite
