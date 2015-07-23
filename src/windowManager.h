@@ -7,8 +7,8 @@
 
 #define SCREEN_WIDTH 144
 
-#define DOWNSTREAM_SYMBOL ""
-#define UPSTREAM_SYMBOL ""
+#define DOWNSTREAM_SYMBOL "D:"
+#define UPSTREAM_SYMBOL "U:"
   
 #define GRID_HEIGHT 28
 #define GRID_WIDTH 24
@@ -17,7 +17,8 @@ enum {
 	ROW_TIME = 0,
 	ROW_DATE = 1,
 	ROW_DOWNSTREAM = 2,
-	ROW_UPSTREAM = 3
+	ROW_UPSTREAM = 3,
+	ROW_UPTIME = 4
 };
 
 Window *s_main_window;
@@ -25,7 +26,8 @@ Window *s_main_window;
 void initWindow(Window *window);
 void deinitWindow(Window *window);
 void updateBandwidthStream(uint32_t bandwidthInBits, uint32_t availableInBytes, int row);
+void updateUpTime(uint32_t upTime);
 void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits);
+void formatUpTimeInSecondsForDisplay(char *time, uint32_t upTime);
 void updateDate(char *formattedTime, int row);
 void drawBars(float percentage, int row);
-void drawBatteryStatue(float percentage);

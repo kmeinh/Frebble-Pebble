@@ -44,10 +44,6 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   }
 }
 
-static void battery_handler(BatteryChargeState charge_state) {
-
-}
-
 static void main_window_load(Window *window) {
   window_set_background_color(window, GColorBlack);
   initWindow(window);
@@ -64,7 +60,6 @@ static void init() {
   s_main_window = window_create();
 
   tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
-  battery_state_service_subscribe(battery_handler);
 
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,
@@ -78,7 +73,6 @@ static void deinit() {
   deinitWindow(s_main_window);
   window_destroy(s_main_window);
   tick_timer_service_unsubscribe();
-  battery_state_service_unsubscribe();
 }
 
 int main(void) {

@@ -30,6 +30,32 @@ void initWindow(Window *window) {
   layer_add_child(window_get_root_layer(window), inverter_layer_get_layer(upStreamInverterLayer));
 }
 
+void updateUpTime(uint32_t upTime) {
+  int y = ROW_UPTIME;
+  char displayableUptime[7];
+  formatUpTimeInSecondsForDisplay(displayableUptime, upTime);
+  for (int x = 0; x < NUM_X; x++) {
+    textBuffer[y][x][0] = displayableUptime[x];
+    text_layer_set_text(textGrid[y][x], textBuffer[y][x]);
+  }
+}
+
+void formatUpTimeInSecondsForDisplay(char *time, uint32_t upTime) {
+  if (upTime < 60) {
+    snprintf(time, 7, "%05lis", upTime);
+  } else if (upTime < 3600) {
+    snprintf(time, 7, "%02lim%02lis", (upTime / 60), (upTime % 60));
+  } else if (upTime < 86400) {
+    snprintf(time, 7, "%02lih%02lim", (upTime / 3600) , ((upTime % 3600) / 60));
+  } else if (upTime < 604800) {
+    snprintf(time, 7, "%02lid%02lih", (upTime / 86400) , ((upTime % 86400) / 3600));
+  } else if (upTime < 60480000) {
+    snprintf(time, 7, "%02liw%02lid", (upTime / 604800) , ((upTime % 604800) / 86400));
+  } else {
+    snprintf(time, 7, "%05liw", (upTime / 604800));
+  }
+}
+
 void updateBandwidthStream(uint32_t bandwidthInBits, uint32_t availableInBytes, int row) {
 
   int y = row;
@@ -44,7 +70,7 @@ void updateBandwidthStream(uint32_t bandwidthInBits, uint32_t availableInBytes, 
     textBuffer[y][x][0] = formattedBandwidth[x - 1];
     text_layer_set_text(textGrid[y][x], textBuffer[y][x]);
   }
-  text_layer_set_text(textGrid[y][0], "");
+  text_layer_set_text(textGrid[y][0], ((row == ROW_UPSTREAM) ? UPSTREAM_SYMBOL : DOWNSTREAM_SYMBOL));
 }
 
 void updateDate(char *formattedTime, int row) {
@@ -86,10 +112,6 @@ void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits) {
     // display: 010MB
     snprintf(stream, 6, "%03dNB", (int) roundf(kb/1024));
   }  
-}
-
-void drawBatteryStatue(float percentage) {
-  
 }
 
 void deinitWindow(Window *window) {
