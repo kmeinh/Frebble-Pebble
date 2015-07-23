@@ -25,3 +25,5 @@ build
 Pods
 
 *.log
+
+.lock-waf_darwin_build
