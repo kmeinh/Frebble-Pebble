@@ -1,5 +1,12 @@
 {
-  "appKeys": {},
+  "appKeys": {
+    "MAX_UP" : 0,
+    "MAX_DOWN" : 1,
+    "AVAILABLE_UP" : 2,
+    "AVAILABLE_DOWN" : 3,
+    "UPTIME" : 4,
+    "CONNECTION_STATUS" : 5
+    },
   "capabilities": [
     ""
   ],

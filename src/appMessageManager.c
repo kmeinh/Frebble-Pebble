@@ -37,7 +37,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received available down: %li", tuple->value->int32);
         availableDownstreamInBytes = (uint32_t)tuple->value->int32;
         break;
-      case UP_TIME:
+      case UPTIME:
         APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received up time: %li", tuple->value->int32);
         upTime = (uint32_t)tuple->value->int32;
         break;
