@@ -8,7 +8,8 @@ enum {
   MAX_DOWN = 1,
   AVAILABLE_UP = 2,
   AVAILABLE_DOWN = 3,
-  UP_TIME = 4
+  UP_TIME = 4,
+  CONNECTION_STATUS = 5
 };
 
 void initAppMessageManager();

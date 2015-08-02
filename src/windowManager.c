@@ -114,6 +114,14 @@ void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits) {
   }  
 }
 
+void displayConnectionStatus(char* status) {
+  int y = ROW_STATUS;
+  for (int x = 0; x < NUM_X; x++) {
+    textBuffer[y][x][0] = status[x];
+    text_layer_set_text(textGrid[y][x], textBuffer[y][x]);
+  }
+}
+
 void deinitWindow(Window *window) {
   for (int y = 0; y < NUM_Y; y++) {
     for (int x = 0; x < NUM_X; x++) {

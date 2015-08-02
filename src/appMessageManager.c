@@ -17,6 +17,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   uint32_t availableUpstreamInBytes=0;
   uint32_t availableDownstreamInBytes=0;
   uint32_t upTime=0;
+  char connectionStatus[7];
 
   while (tuple != NULL) {
     switch(tuple->key) {
@@ -40,12 +41,17 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received up time: %li", tuple->value->int32);
         upTime = (uint32_t)tuple->value->int32;
         break;
+      case CONNECTION_STATUS:
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received connectionStatus: %s", tuple->value->cstring);
+        snprintf(connectionStatus, 7, tuple->value->cstring);
+        break;
     }
     tuple = dict_read_next(iterator);
   }
   updateBandwidthStream(currentUpstreamInBits, availableUpstreamInBytes, ROW_UPSTREAM);
   updateBandwidthStream(currentDownstreamInBits, availableDownstreamInBytes, ROW_DOWNSTREAM);
   updateUpTime(upTime);
+  displayConnectionStatus(connectionStatus);
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {

@@ -18,7 +18,8 @@ enum {
 	ROW_DATE = 1,
 	ROW_DOWNSTREAM = 2,
 	ROW_UPSTREAM = 3,
-	ROW_UPTIME = 4
+	ROW_STATUS = 4,
+	ROW_UPTIME = 5
 };
 
 Window *s_main_window;
@@ -31,3 +32,4 @@ void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits);
 void formatUpTimeInSecondsForDisplay(char *time, uint32_t upTime);
 void updateDate(char *formattedTime, int row);
 void drawBars(float percentage, int row);
+void displayConnectionStatus(char* status);
