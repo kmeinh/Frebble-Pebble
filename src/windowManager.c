@@ -110,7 +110,7 @@ void formatBandWidthInBitsForDisplay(char* stream, uint32_t bandwidthInBits) {
     snprintf(stream, 6, "%1d.%1dMB", (int)(roundf(10 * (kb/1024.0)) / 10), (((int)((kb/1024) * 10))%10));
   } else {
     // display: 010MB
-    snprintf(stream, 6, "%03dNB", (int) roundf(kb/1024));
+    snprintf(stream, 6, "%03dMB", (int) roundf(kb/1024));
   }  
 }
 

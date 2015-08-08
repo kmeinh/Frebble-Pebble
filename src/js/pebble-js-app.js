@@ -15,6 +15,16 @@ Pebble.addEventListener('appmessage',
 	updateDataAndSendToWatch                   
 );
 
+Pebble.addEventListener('showConfiguration',function(){
+	var url = '10.10.10.22:8080';
+	Pebble.openURL(url);
+});
+
+Pebble.addEventListener('webviewclosed',function(e){
+	var configData = JSON.parse(decodeURIComponent(e.response));
+	console.log(JSON.stringify(configData));
+})
+
 function updateDataAndSendToWatch(){
 	fetchDataFromService(sendDataToWatch);
 }

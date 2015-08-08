@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/bower_components/pebble-slate/dist/css/slate.css">
+</head>
+<body>
+	<div class="item-container">
+		<div class="item-container-header">Aktualisierungsintervall</div>
+		<div class="item-container-content">
+ 			<label class="item">
+ 				Nach wie vielen Sekunden sollen die angezeigten Daten aktualisiert werden?
+      			<div class="item-input-wrapper">
+        			<input type="text" class="item-input" id="refreshcycle" placeholder="Aktualisierungsintervall in Sekunden">
+      			</div>
+    		</label>
+    	</div>
+	</div>
+	<div class="item-container">
+		<div class="item-container-header">Service URLs</div>
+		<div class="item-container-content">
+		<div class="item">
+		Im folgenden Abschnitt wird der Zugriff auf die Fritz!Box internen Webservices konfiguriert. Für die meisten Fälle reicht die automatische Konfiguration aus.
+		</div>
+ 			<label class="item">
+ 				WAN Common Interface Config
+      			<div class="item-input-wrapper">
+        			<input type="text" class="item-input" id="wancic" placeholder="URL zu Service urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1">
+      			</div>
+    		</label>
+    		<label class="item">
+ 				WAN IP Connection
+      			<div class="item-input-wrapper">
+        			<input type="text" class="item-input" id="wanipc" placeholder="URL zu Service urn:schemas-upnp-org:service:WANIPConnection:1">
+      			</div>
+    		</label>
+    	</div>
+	</div>
+	<div class="item-container">
+  		<div class="button-container">
+    		<input type="button" class="item-button" id="submit" value="Speichern">
+  		</div>
+	</div>
+	<script type="text/javascript" src="../bower_components/pebble-slate/dist/js/slate.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+</body>
+</html>

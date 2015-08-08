@@ -5,7 +5,11 @@
     "AVAILABLE_UP" : 2,
     "AVAILABLE_DOWN" : 3,
     "UPTIME" : 4,
-    "CONNECTION_STATUS" : 5
+    "CONNECTION_STATUS" : 5,
+    "MESSAGE_STATUS" : 6,
+    "REFRESH_CYCLE" : 7,
+    "WANCIC_URL" : 8,
+    "WANIPC_URL" : 9
     },
   "capabilities": [
     ""
