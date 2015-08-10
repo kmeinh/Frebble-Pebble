@@ -1,0 +1,6 @@
+#service-urls-wrapper{
+	height: 0px;
+    overflow: hidden;
+    display: block;
+    transition: height 200ms;
+}

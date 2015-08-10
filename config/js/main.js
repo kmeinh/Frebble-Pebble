@@ -1,47 +1,61 @@
+submitButton = $('#submit');
+automaticDiscoveryToggle = $('#automatic-discovery');
+refreshcycle = $('#refreshcycle');
+wancic = $('#wancic');
+wanipc = $('#wanipc');
+ip = $('#ip');
+port = $('#port');
+
 (function(){
-	loadOptions();
+	loadOptionsFromQueryParams();
 	setupButtons();
 })();
 
 function setupButtons(){
-var submitButton = $('#submit');
-
 
 submitButton.on('click',function(){
 	var returnTo = getQueryParam("return_to","pebblejs://close#");
-	document.location = returnTo + encodeURIComponent(JSON.stringify(getAndStoreConfigData()));
+	document.location = returnTo + encodeURIComponent(JSON.stringify(getConfigData()));
 });
 
+automaticDiscoveryToggle.on('change',toggleAutomaticDiscovery);
 }
 
-function loadOptions(){
-	var refreshcycle = $('#refreshcycle');
-	var wancic = $('#wancic');
-	var wanipc = $('#wanipc');
-
-	if(localStorage.refreshcycle){
-		refreshcycle[0].value = localStorage.refreshcycle;
-		wancic[0].value=localStorage.wancic;
-		wanipc[0].value=localStorage.wanipc;
+function toggleAutomaticDiscovery(){
+	if (automaticDiscoveryToggle[0].checked){
+		$("#service-urls-wrapper").css("height","0px");
+	}else{
+		$("#service-urls-wrapper").css("height","159px");
 	}
 }
 
-function getAndStoreConfigData(){
-	var refreshcycle = $('#refreshcycle');
-	var wancic = $('#wancic');
-	var wanipc = $('#wanipc');
 
+
+function loadOptionsFromQueryParams(){
+	var valueString = getQueryParam("values","");
+	if (valueString == ""){
+		return;
+	}
+	valuesObject = JSON.parse(decodeURIComponent(valueString));
+	refreshcycle.val(valuesObject.refreshcycle);
+	ip.val(valuesObject.ip);
+	port.val(valuesObject.port);
+	wancic.val(valuesObject.wancic);
+	wanipc.val(valuesObject.wanipc);
+	automaticDiscoveryToggle[0].checked = valuesObject.automaticDiscovery;
+	toggleAutomaticDiscovery();
+}
+
+function getConfigData(){
 	options = {
-		refreshcycle: refreshcycle.val(),
-		wancic: wancic.val(),
-		wanipc: wanipc.val()
+		refreshcycle : refreshcycle.val(),
+		wancic : wancic.val(),
+		wanipc : wanipc.val(),
+		automaticDiscovery  : automaticDiscoveryToggle[0].checked,
+		ip : ip.val(),
+		port : port.val()
 	};
 
-	localStorage.refreshcycle = options.refreshcycle;
-	localStorage.wancic = options.wancic;
-	localStorage.wanipc = options.wanipc;
-
-	console.log('options: '+JSON.stringify(options));
 	return options;
 }
 
