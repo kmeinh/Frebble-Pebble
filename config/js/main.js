@@ -1,9 +1,9 @@
 (function(){
 	loadOptions();
-	submitHandler();
+	setupButtons();
 })();
 
-function submitHandler(){
+function setupButtons(){
 var submitButton = $('#submit');
 
 
@@ -45,9 +45,17 @@ function getAndStoreConfigData(){
 	return options;
 }
 
-function getQueryParam(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+function getQueryParam(variable, defaultValue) {
+  // Find all URL parameters
+  var query = location.search.substring(1);
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+
+    // If the query variable parameter is found, decode it to use and return it for use
+    if (pair[0] === variable) {
+      return decodeURIComponent(pair[1]);
+    }
+  }
+  return defaultValue || false;
 }

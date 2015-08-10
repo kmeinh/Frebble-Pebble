@@ -2,6 +2,7 @@
 
 #include <pebble.h>
 #include "windowManager.h"
+#include "configManager.h"
 
 enum {
   MAX_UP = 0,
@@ -9,7 +10,11 @@ enum {
   AVAILABLE_UP = 2,
   AVAILABLE_DOWN = 3,
   UPTIME = 4,
-  CONNECTION_STATUS = 5
+  CONNECTION_STATUS = 5,
+  REFRESH_CYCLE = 6,
+  WANCIC_URL = 7,
+  WANIPC_URL = 8,
+  AUTOMATIC_DISCOVERY = 9
 };
 
 void initAppMessageManager();

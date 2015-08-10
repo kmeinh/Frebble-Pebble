@@ -18,23 +18,46 @@
     	</div>
 	</div>
 	<div class="item-container">
-		<div class="item-container-header">Service URLs</div>
+		<div class="item-container-header">Fritz!Box</div>
 		<div class="item-container-content">
-		<div class="item">
-		Im folgenden Abschnitt wird der Zugriff auf die Fritz!Box internen Webservices konfiguriert. Für die meisten Fälle reicht die automatische Konfiguration aus.
-		</div>
  			<label class="item">
- 				WAN Common Interface Config
+ 				Fritz!Box IP oder Hostname
       			<div class="item-input-wrapper">
-        			<input type="text" class="item-input" id="wancic" placeholder="URL zu Service urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1">
+        			<input type="text" class="item-input" id="ip" placeholder="192.168.178.1 oder fritz.box">
       			</div>
     		</label>
     		<label class="item">
- 				WAN IP Connection
+ 				Fritz!Box UPNP Service Port
       			<div class="item-input-wrapper">
-        			<input type="text" class="item-input" id="wanipc" placeholder="URL zu Service urn:schemas-upnp-org:service:WANIPConnection:1">
+        			<input type="text" class="item-input" id="port" placeholder="49000">
       			</div>
     		</label>
+    	</div>
+	</div>
+	<div class="item-container">
+		<div class="item-container-header">Service URLs</div>
+		<div class="item-container-content">
+			<div class="item">
+			Im folgenden Abschnitt wird der Zugriff auf die Fritz!Box internen Webservices konfiguriert. Für die meisten Fälle reicht die automatische Konfiguration aus.
+			</div>
+    		<label class="item">
+      		Automatische Konfiguration
+      			<input type="checkbox" class="item-toggle" id="automatic-discovery" checked>
+    		</label>
+			<span id="service-urls-wrapper">
+	 			<label class="item">
+	 				WAN Common Interface Config
+	      			<div class="item-input-wrapper">
+	        			<input type="text" class="item-input" id="wancic" placeholder="URL zu Service urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1">
+	      			</div>
+	    		</label>
+	    		<label class="item">
+	 				WAN IP Connection
+	      			<div class="item-input-wrapper">
+	        			<input type="text" class="item-input" id="wanipc" placeholder="URL zu Service urn:schemas-upnp-org:service:WANIPConnection:1">
+	      			</div>
+	    		</label>
+    		</span>
     	</div>
 	</div>
 	<div class="item-container">

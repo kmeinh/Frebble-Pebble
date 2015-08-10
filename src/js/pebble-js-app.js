@@ -16,13 +16,14 @@ Pebble.addEventListener('appmessage',
 );
 
 Pebble.addEventListener('showConfiguration',function(){
-	var url = '10.10.10.22:8080';
+	var url = 'http://a58f305b.ngrok.io/index.html';
 	Pebble.openURL(url);
 });
 
 Pebble.addEventListener('webviewclosed',function(e){
 	var configData = JSON.parse(decodeURIComponent(e.response));
 	console.log(JSON.stringify(configData));
+	Pebble.sendAppMessage({REFRESH_CYCLE:parseInt(configData.refreshcycle)},function(e){},function(e){});
 })
 
 function updateDataAndSendToWatch(){

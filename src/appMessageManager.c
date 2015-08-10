@@ -45,6 +45,10 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received connectionStatus: %s", tuple->value->cstring);
         snprintf(connectionStatus, 7, tuple->value->cstring);
         break;
+      case REFRESH_CYCLE:
+        APP_LOG(APP_LOG_LEVEL_DEBUG,"inbox received refresh cycle: %li", tuple->value->int32);
+        setDefaultTimerTicks((uint32_t)tuple->value->int32);
+        break;
     }
     tuple = dict_read_next(iterator);
   }
