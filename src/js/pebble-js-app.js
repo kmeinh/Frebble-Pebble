@@ -2,6 +2,15 @@ SET_SERVICE_DATA = 0;
 SET_CONFIG_DATA = 1;
 GET_SERVICE_DATA = 2;
 
+var ConfigData = {
+	REFRESH_CYCLE : localStorage.getItem("REFRESH_CYCLE")||5,
+	FRITZ_IP : localStorage.getItem("FRITZ_IP")||"fritz.box",
+	FRITZ_PORT : localStorage.getItem("FRITZ_PORT")||49000,
+	AUTOMATIC_DISCOVERY : localStorage.getItem("AUTOMATIC_DISCOVERY")||1,
+	WANCIC_URL : localStorage.getItem("WANCIC_URL")||"/igdupnp/control/WANCommonIFC1",
+	WANIPC_URL : localStorage.getItem("WANIPC_URL")||"/igdupnp/control/WANIPConn1"
+}
+
 var DataStore = {
 	maxUpstream : 0,
 	maxDownstream : 0,
@@ -20,7 +29,6 @@ Pebble.addEventListener('appmessage',
 	);
 
 Pebble.addEventListener('showConfiguration',function(){
-	console.log("config requested");
 	Pebble.openURL(createURLFromLocalConfigData());
 });
 
@@ -28,48 +36,45 @@ Pebble.addEventListener('webviewclosed',function(e){
 	if (e.response == ""){
 		return;
 	}
-	var configData = JSON.parse(decodeURIComponent(e.response));
-	storeConfigDataLocally(configData);
-	Pebble.sendAppMessage(buildAppMessageFromConfigData(configData),function(e){},function(e){});
+	var updatedConfigData = JSON.parse(decodeURIComponent(e.response));
+	updateConfigData(updatedConfigData);
+	Pebble.sendAppMessage(buildDictionaryFromConfigData(),function(e){},function(e){});
 });
 
 function createURLFromLocalConfigData(){
-	var baseUrl = 'http://5990bf47.ngrok.io/index.html';
-	return baseUrl + "?values=" + encodeURIComponent(JSON.stringify(
-	{
-		"REFRESH_CYCLE":localStorage.getItem("REFRESH_CYCLE")||5,
-		"FRITZ_IP":localStorage.getItem("FRITZ_IP")||"fritz.box",
-		"FRITZ_PORT":localStorage.getItem("FRITZ_PORT")||49000,
-		"AUTOMATIC_DISCOVERY":localStorage.getItem("AUTOMATIC_DISCOVERY")||1,
-		"WANCIC_URL":localStorage.getItem("WANCIC_URL")||"/igdupnp/control/WANCommonIFC1",
-		"WANIPC_URL":localStorage.getItem("WANIPC_URL")||"/igdupnp/control/WANIPConn1"
-	}
-		));
+	var baseUrl = 'http://85631c28.ngrok.io/index.html';
+	return baseUrl + "?values=" + encodeURIComponent(JSON.stringify(ConfigData));
 }
 
 function handleIncomingMessage(message){
 	switch(message.payload.MESSAGE_TYPE){
 		case GET_SERVICE_DATA:
 			updateDataAndSendToWatch();
-			break;
+		break;
 		default:
-		console.log("MESSAGE_TYPE missing or unknown, dropping message.");
+			console.log("MESSAGE_TYPE missing or unknown, dropping message.");
 	}
 }
 
-function storeConfigDataLocally(configData){
-		localStorage.setItem("REFRESH_CYCLE",configData.REFRESH_CYCLE);
-		localStorage.setItem("FRITZ_IP",configData.FRITZ_IP);
-		localStorage.setItem("FRITZ_PORT",configData.FRITZ_PORT);
-		localStorage.setItem("AUTOMATIC_DISCOVERY",+configData.AUTOMATIC_DISCOVERY);
-		localStorage.setItem("WANCIC_URL",configData.WANCIC_URL);
-		localStorage.setItem("WANIPC_URL",configData.WANIPC_URL);
+function updateConfigData(updatedConfigData){
+	ConfigData.REFRESH_CYCLE = updatedConfigData.REFRESH_CYCLE;
+	ConfigData.FRITZ_IP = updatedConfigData.FRITZ_IP;
+	ConfigData.FRITZ_PORT = updatedConfigData.FRITZ_PORT;
+	ConfigData.AUTOMATIC_DISCOVERY = updatedConfigData.AUTOMATIC_DISCOVERY;
+	ConfigData.WANCIC_URL = updatedConfigData.WANCIC_URL;
+	ConfigData.WANIPC_URL = updatedConfigData.WANIPC_URL;
+	localStorage.setItem("REFRESH_CYCLE",updatedConfigData.REFRESH_CYCLE);
+	localStorage.setItem("FRITZ_IP",updatedConfigData.FRITZ_IP);
+	localStorage.setItem("FRITZ_PORT",updatedConfigData.FRITZ_PORT);
+	localStorage.setItem("AUTOMATIC_DISCOVERY",+updatedConfigData.AUTOMATIC_DISCOVERY);
+	localStorage.setItem("WANCIC_URL",updatedConfigData.WANCIC_URL);
+	localStorage.setItem("WANIPC_URL",updatedConfigData.WANIPC_URL);
 }
 
-function buildAppMessageFromConfigData(configData){
+function buildDictionaryFromConfigData(){
 	return {
 		MESSAGE_TYPE:SET_CONFIG_DATA,
-		REFRESH_CYCLE:parseInt(configData.REFRESH_CYCLE)
+		REFRESH_CYCLE:parseInt(ConfigData.REFRESH_CYCLE)
 	};
 }
 
@@ -94,7 +99,7 @@ function clearDataStore(){
 }
 
 function fetchMaxUpAndDown(callback){
-	callFritzAction("http://fritz.box:49000/igdupnp/control/WANCommonIFC1","urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1","GetCommonLinkProperties",
+	callFritzAction("http://"+ConfigData.FRITZ_IP+":"+ConfigData.FRITZ_PORT+ConfigData.WANCIC_URL,"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1","GetCommonLinkProperties",
 		function(actionResponse){
 			DataStore.maxUpstream=parseInt(actionResponse.match(/<NewLayer1UpstreamMaxBitRate>(.*?)<\/NewLayer1UpstreamMaxBitRate>/)[1]);
 			DataStore.maxDownstream=parseInt(actionResponse.match(/<NewLayer1DownstreamMaxBitRate>(.*?)<\/NewLayer1DownstreamMaxBitRate>/)[1]);
@@ -106,7 +111,7 @@ function fetchMaxUpAndDown(callback){
 }
 
 function fetchCurrentUpAndDown(callback){
-	callFritzAction("http://fritz.box:49000/igdupnp/control/WANCommonIFC1","urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1","GetAddonInfos",
+	callFritzAction("http://"+ConfigData.FRITZ_IP+":"+ConfigData.FRITZ_PORT+ConfigData.WANCIC_URL,"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1","GetAddonInfos",
 		function(actionResponse){
 			DataStore.availableUpstream=parseInt(actionResponse.match(/<NewByteSendRate>(.*?)<\/NewByteSendRate>/)[1]);
 			DataStore.availableDownstream=parseInt(actionResponse.match(/<NewByteReceiveRate>(.*?)<\/NewByteReceiveRate>/)[1]);
@@ -118,7 +123,7 @@ function fetchCurrentUpAndDown(callback){
 }
 
 function fetchUptimeAndConnectionStatus(callback){
-	callFritzAction("http://fritz.box:49000/igdupnp/control/WANIPConn1","urn:schemas-upnp-org:service:WANIPConnection:1","GetStatusInfo",
+	callFritzAction("http://"+ConfigData.FRITZ_IP+":"+ConfigData.FRITZ_PORT+ConfigData.WANIPC_URL,"urn:schemas-upnp-org:service:WANIPConnection:1","GetStatusInfo",
 		function(actionResponse){
 			DataStore.uptime = parseInt(actionResponse.match(/<NewUptime>(.*?)<\/NewUptime>/)[1]);
 			DataStore.connectionStatus = actionResponse.match(/<NewConnectionStatus>(.*?)<\/NewConnectionStatus>/)[1];
