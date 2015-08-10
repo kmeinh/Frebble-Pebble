@@ -38,8 +38,9 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
     if ((timerTicksUpdate--) == 0) {
       DictionaryIterator *iterator;
       app_message_outbox_begin(&iterator);
+      dict_write_int8(iterator,MESSAGE_TYPE,GET_SERVICE_DATA);
       app_message_outbox_send();
-      timerTicksUpdate = getDefaultTimerTicks();
+      timerTicksUpdate = getRefreshCycle();
     } 
   }
 }

@@ -8,7 +8,11 @@
     "CONNECTION_STATUS" : 5,
     "REFRESH_CYCLE" : 6,
     "WANCIC_URL" : 7,
-    "WANIPC_URL" : 8
+    "WANIPC_URL" : 8,
+    "AUTOMATIC_DISCOVERY" : 9,
+    "FRITZ_IP" : 10,
+    "FRITZ_PORT" : 11,
+    "MESSAGE_TYPE" : 12
     },
   "capabilities": [
     "configurable"

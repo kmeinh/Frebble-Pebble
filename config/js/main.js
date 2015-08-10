@@ -15,7 +15,8 @@ function setupButtons(){
 
 submitButton.on('click',function(){
 	var returnTo = getQueryParam("return_to","pebblejs://close#");
-	document.location = returnTo + encodeURIComponent(JSON.stringify(getConfigData()));
+	console.log("encoding"+JSON.stringify(buildConfigData()));
+	document.location = returnTo + encodeURIComponent(JSON.stringify(buildConfigData()));
 });
 
 automaticDiscoveryToggle.on('change',toggleAutomaticDiscovery);
@@ -37,26 +38,24 @@ function loadOptionsFromQueryParams(){
 		return;
 	}
 	valuesObject = JSON.parse(decodeURIComponent(valueString));
-	refreshcycle.val(valuesObject.refreshcycle);
-	ip.val(valuesObject.ip);
-	port.val(valuesObject.port);
-	wancic.val(valuesObject.wancic);
-	wanipc.val(valuesObject.wanipc);
-	automaticDiscoveryToggle[0].checked = valuesObject.automaticDiscovery;
+	refreshcycle.val(valuesObject.REFRESH_CYCLE);
+	ip.val(valuesObject.FRITZ_IP);
+	port.val(valuesObject.FRITZ_PORT);
+	wancic.val(valuesObject.WANCIC_URL);
+	wanipc.val(valuesObject.WANIPC_URL);
+	automaticDiscoveryToggle[0].checked = valuesObject.AUTOMATIC_DISCOVERY;
 	toggleAutomaticDiscovery();
 }
 
-function getConfigData(){
-	options = {
-		refreshcycle : refreshcycle.val(),
-		wancic : wancic.val(),
-		wanipc : wanipc.val(),
-		automaticDiscovery  : automaticDiscoveryToggle[0].checked,
-		ip : ip.val(),
-		port : port.val()
+function buildConfigData(){
+	return {
+		REFRESH_CYCLE : refreshcycle.val(),
+		WANCIC_URL : wancic.val(),
+		WANIPC_URL : wanipc.val(),
+		AUTOMATIC_DISCOVERY : automaticDiscoveryToggle[0].checked,
+		FRITZ_IP : ip.val(),
+		FRITZ_PORT : port.val()
 	};
-
-	return options;
 }
 
 function getQueryParam(variable, defaultValue) {

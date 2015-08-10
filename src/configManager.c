@@ -1,29 +1,18 @@
 #include "configManager.h"
 
-uint32_t defaultTimerTicks = 5;
-int automaticDiscovery = 1;
-char wanipcUrl[1000]; 
-char wancicUrl[1000];
+uint32_t refreshCycle = 5;
 
 void initConfigValuesFromPersistentStorage(){
   if (persist_exists(REFRESH_CYCLE)){
-    defaultTimerTicks = persist_read_int(REFRESH_CYCLE);
-  }
-  if(persist_exists(WANCIC_URL)){
-    persist_read_string(WANCIC_URL,wancicUrl,1000);
-  }
-  if(persist_exists(WANIPC_URL)){
-    persist_read_string(WANIPC_URL,wanipcUrl,1000);
-  }
-  if(persist_exists(AUTOMATIC_DISCOVERY)){
-    automaticDiscovery = persist_read_int(AUTOMATIC_DISCOVERY);
+    refreshCycle = persist_read_int(REFRESH_CYCLE);
   }
 }
 
-uint32_t getDefaultTimerTicks(){
-  return defaultTimerTicks;
+uint32_t getRefreshCycle(){
+  return refreshCycle;
 }
 
-void setDefaultTimerTicks(uint32_t newDefaultTimerTicks){
-  defaultTimerTicks = newDefaultTimerTicks;
+void setRefreshCycle(uint32_t newRefreshCycle){
+  refreshCycle = newRefreshCycle;
+  persist_write_int(REFRESH_CYCLE,refreshCycle);
 }

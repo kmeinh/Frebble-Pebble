@@ -9,7 +9,24 @@ void initAppMessageManager() {
 }
 
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
-  APP_LOG(APP_LOG_LEVEL_INFO, "received");
+  Tuple *messageType = dict_find(iterator,MESSAGE_TYPE);
+  if (messageType == NULL){
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "No Message Type specified, dropping message.");
+    return;
+  }
+  switch(messageType->value->int32){
+    case SET_SERVICE_DATA:
+      APP_LOG(APP_LOG_LEVEL_INFO, "received SET_SERVICE_DATA");
+      parseServiceData(iterator);
+      break;
+    case SET_CONFIG_DATA:
+      APP_LOG(APP_LOG_LEVEL_INFO, "received SET_CONFIG_DATA");
+      parseConfigData(iterator);
+      break;
+  }
+}
+
+static void parseServiceData(DictionaryIterator *iterator){
   Tuple *tuple = dict_read_first(iterator);
 
   uint32_t currentUpstreamInBits=0;
@@ -22,33 +39,23 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   while (tuple != NULL) {
     switch(tuple->key) {
       case MAX_UP:
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received max up: %li", tuple->value->int32);
-        currentUpstreamInBits = (uint32_t)tuple->value->int32;
-        break;
+      currentUpstreamInBits = (uint32_t)tuple->value->int32;
+      break;
       case MAX_DOWN:
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received max down: %li", tuple->value->int32);
-        currentDownstreamInBits = (uint32_t)tuple->value->int32;
-        break;
+      currentDownstreamInBits = (uint32_t)tuple->value->int32;
+      break;
       case AVAILABLE_UP:
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received available up: %li", tuple->value->int32);
-        availableUpstreamInBytes = (uint32_t)tuple->value->int32;
-        break;
+      availableUpstreamInBytes = (uint32_t)tuple->value->int32;
+      break;
       case AVAILABLE_DOWN:
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received available down: %li", tuple->value->int32);
-        availableDownstreamInBytes = (uint32_t)tuple->value->int32;
-        break;
+      availableDownstreamInBytes = (uint32_t)tuple->value->int32;
+      break;
       case UPTIME:
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received up time: %li", tuple->value->int32);
-        upTime = (uint32_t)tuple->value->int32;
-        break;
+      upTime = (uint32_t)tuple->value->int32;
+      break;
       case CONNECTION_STATUS:
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received connectionStatus: %s", tuple->value->cstring);
-        snprintf(connectionStatus, 7, tuple->value->cstring);
-        break;
-      case REFRESH_CYCLE:
-        APP_LOG(APP_LOG_LEVEL_DEBUG,"inbox received refresh cycle: %li", tuple->value->int32);
-        setDefaultTimerTicks((uint32_t)tuple->value->int32);
-        break;
+      snprintf(connectionStatus, 7, tuple->value->cstring);
+      break;
     }
     tuple = dict_read_next(iterator);
   }
@@ -56,6 +63,20 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   updateBandwidthStream(currentDownstreamInBits, availableDownstreamInBytes, ROW_DOWNSTREAM);
   updateUpTime(upTime);
   displayConnectionStatus(connectionStatus);
+}
+
+static void parseConfigData(DictionaryIterator *iterator){
+  Tuple *tuple = dict_read_first(iterator);
+  while (tuple != NULL) {
+    switch(tuple->key) {
+      case REFRESH_CYCLE:
+        APP_LOG(APP_LOG_LEVEL_DEBUG,"inbox received refresh cycle: %li", tuple->value->int32);
+        setRefreshCycle((uint32_t)tuple->value->int32);
+        break;
+    }
+    tuple = dict_read_next(iterator);
+  }
+
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {

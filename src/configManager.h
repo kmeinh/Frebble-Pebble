@@ -3,5 +3,5 @@
 
 
 void initConfigValuesFromPersistentStorage();
-uint32_t getDefaultTimerTicks();
-void setDefaultTimerTicks(uint32_t newDefaultTimerTicks);
+uint32_t getRefreshCycle();
+void setRefreshCycle(uint32_t newDefaultTimerTicks);
