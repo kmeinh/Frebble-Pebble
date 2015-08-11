@@ -16,12 +16,14 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   }
   switch(messageType->value->int32){
     case SET_SERVICE_DATA:
-      APP_LOG(APP_LOG_LEVEL_INFO, "received SET_SERVICE_DATA");
       parseServiceData(iterator);
       break;
     case SET_CONFIG_DATA:
-      APP_LOG(APP_LOG_LEVEL_INFO, "received SET_CONFIG_DATA");
       parseConfigData(iterator);
+      break;
+    case SET_ERROR:
+      vibes_short_pulse();
+      parseError(iterator);
       break;
   }
 }
@@ -70,13 +72,26 @@ static void parseConfigData(DictionaryIterator *iterator){
   while (tuple != NULL) {
     switch(tuple->key) {
       case REFRESH_CYCLE:
-        APP_LOG(APP_LOG_LEVEL_DEBUG,"inbox received refresh cycle: %li", tuple->value->int32);
         setRefreshCycle((uint32_t)tuple->value->int32);
         break;
     }
     tuple = dict_read_next(iterator);
   }
+}
 
+static void parseError(DictionaryIterator *iterator){
+  Tuple *tuple = dict_read_first(iterator);
+  char errorString[80];
+  while (tuple != NULL) {
+    switch(tuple->key) {
+      case ERROR_STRING:
+        APP_LOG(APP_LOG_LEVEL_DEBUG,"Error string: %s", tuple->value->cstring);
+        snprintf(errorString, 80, tuple->value->cstring);
+        break;
+    }
+    tuple = dict_read_next(iterator);
+  }
+  displayErrorString(errorString);
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {

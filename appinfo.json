@@ -12,7 +12,8 @@
     "AUTOMATIC_DISCOVERY" : 9,
     "FRITZ_IP" : 10,
     "FRITZ_PORT" : 11,
-    "MESSAGE_TYPE" : 12
+    "MESSAGE_TYPE" : 12,
+    "ERROR_STRING" : 13
     },
   "capabilities": [
     "configurable"

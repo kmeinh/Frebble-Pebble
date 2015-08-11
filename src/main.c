@@ -14,7 +14,7 @@ static void timeChanged() {
   } else {
    strftime(bufferTime, sizeof("------"), "%I%M%S", tick_time);
   }
-  updateDate(bufferTime, ROW_TIME);
+  updateTime(bufferTime);
 }
 
 static void dateChanged() {
@@ -22,7 +22,7 @@ static void dateChanged() {
   struct tm *tick_time = localtime(&temp);
   char bufferDate[] = "------";
   strftime(bufferDate, sizeof("------"), "%d%m%y", tick_time);
-  updateDate(bufferDate, ROW_DATE);
+  updateDate(bufferDate);
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
@@ -34,7 +34,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   if (units_changed == DAY_UNIT || units_changed == MONTH_UNIT || units_changed == YEAR_UNIT) {
     dateChanged();
   }
-  if (units_changed == SECOND_UNIT ) {
+  if (units_changed == SECOND_UNIT && currentDisplayMode!=ERROR) {
     if ((timerTicksUpdate--) == 0) {
       DictionaryIterator *iterator;
       app_message_outbox_begin(&iterator);
@@ -47,7 +47,8 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 
 static void main_window_load(Window *window) {
   window_set_background_color(window, GColorBlack);
-  initWindow(window);
+  initDateTime(window);
+  initWindow(window,NORMAL);
   dateChanged();
   timeChanged();
 }
@@ -57,6 +58,10 @@ static void main_window_unload(Window *window) {
 }
   
 static void init() {
+  initAppMessageManager();
+  
+  initConfigValuesFromPersistentStorage();
+
   s_main_window = window_create();
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,
@@ -65,10 +70,6 @@ static void init() {
   window_stack_push(s_main_window, true);
 
   tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
-
-  initAppMessageManager();
-  
-  initConfigValuesFromPersistentStorage();
 }
 
 static void deinit() {
