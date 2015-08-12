@@ -3,7 +3,7 @@
 #include "appMessageManager.h"
 #include "configManager.h"
 
-static int timerTicksUpdate = 0;
+static int timerTicksUntilUpdate = 0;
 
 static void timeChanged() {
   time_t temp = time(NULL);
@@ -35,13 +35,15 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
     dateChanged();
   }
   if (units_changed == SECOND_UNIT && currentDisplayMode!=ERROR) {
-    if ((timerTicksUpdate--) == 0) {
+    if (getTimerTicksUntilUpdate() == 0) {
       DictionaryIterator *iterator;
       app_message_outbox_begin(&iterator);
       dict_write_int8(iterator,MESSAGE_TYPE,GET_SERVICE_DATA);
       app_message_outbox_send();
-      timerTicksUpdate = getRefreshCycle();
-    } 
+      setTimerTicksUntilUpdate(getRefreshCycle());
+    } else{
+      setTimerTicksUntilUpdate(getTimerTicksUntilUpdate()-1);
+    }
   }
 }
 

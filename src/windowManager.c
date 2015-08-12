@@ -75,7 +75,7 @@ static void initNormalWindow(Window *window){
 static void initErrorWindow(Window *window){
   accel_tap_service_subscribe(tap_handler);
 
-  TextLayer *errorString = text_layer_create(GRect(0,((ROW_DOWNSTREAM)*GRID_HEIGHT)-4,GRID_WIDTH*NUM_X,3*GRID_HEIGHT));
+  TextLayer *errorString = text_layer_create(GRect(0,((ROW_DOWNSTREAM)*GRID_HEIGHT)-4,GRID_WIDTH*NUM_X,3*GRID_HEIGHT+4));
   text_layer_set_text_color(errorString, GColorWhite);
   text_layer_set_background_color(errorString, GColorClear);
   text_layer_set_font(errorString, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
@@ -155,7 +155,6 @@ void updateBandwidthStream(uint32_t bandwidthInBits, uint32_t availableInBytes, 
 }
 
 void updateDate(char *formattedDate) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG,"trying to update Date with %s",formattedDate);
   int y = ROW_DATE;
   for (int x = 0; x < NUM_X; x++) {
     dateTimeBuffer[y][x][0] = formattedDate[x];
