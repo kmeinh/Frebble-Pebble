@@ -75,10 +75,10 @@ static void initNormalWindow(Window *window){
 static void initErrorWindow(Window *window){
   accel_tap_service_subscribe(tap_handler);
 
-  TextLayer *errorString = text_layer_create(GRect(0,((ROW_DOWNSTREAM)*GRID_HEIGHT)-4,GRID_WIDTH*NUM_X,3*GRID_HEIGHT+4));
+  TextLayer *errorString = text_layer_create(GRect(0,((ROW_DOWNSTREAM)*GRID_HEIGHT)-8,GRID_WIDTH*NUM_X,3*GRID_HEIGHT+12));
   text_layer_set_text_color(errorString, GColorWhite);
   text_layer_set_background_color(errorString, GColorClear);
-  text_layer_set_font(errorString, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
+  text_layer_set_font(errorString, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
   text_layer_set_text_alignment(errorString, GTextAlignmentCenter);
   text_layer_set_text(errorString,"");
   layer_add_child(window_get_root_layer(window), (Layer*) errorString);

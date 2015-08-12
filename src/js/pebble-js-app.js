@@ -186,15 +186,7 @@ ServiceDataRequest.prototype.callFritzAction=function(url, urn, action, readyCal
 		if (xmlhttp.readyState==4 && xmlhttp.status==200){
 			readyCallback(xmlhttp.responseText);
 		}else if (xmlhttp.readyState==4 && xmlhttp.status!=200){
-			switch (xmlhttp.status){
-				case null:
-					innerThis.handleError("HTTP Error: status "+xmlhttp.statusText+". Check config!", xmlhttp, innerThis);
-					break;
-				default:
-					innerThis.handleError(xmlhttp.status+" HTTP Error. Check config!", xmlhttp, innerThis);
-					break;
-			}
-			console.log("xmlhttp no good:"+xmlhttp.status+" "+xmlhttp.statusText);
+			innerThis.handleError(innerThis.formatError(xmlhttp, innerThis), xmlhttp, innerThis);
 		}
 	};
 	xmlhttp.timeout = 3000;
@@ -211,6 +203,23 @@ ServiceDataRequest.prototype.callFritzAction=function(url, urn, action, readyCal
 	xmlhttp.send("<?xml version=\"1.0\" encoding=\"utf-8\"?><s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><m:"+action+" xmlns:m=\""+urn+"\"></m:"+action+"></s:Body></s:Envelope>");
 	return xmlhttp;
 };
+
+ServiceDataRequest.prototype.formatError = function(request, context){
+	if (request.status == null){
+		return "Unknown Error status null "+request.statusText+ " Check config!";
+	}
+	return context.parseUpnpErrorFromXML(request.responseText) || "HTTP Status "+request.status + " " + request.statusText + ". Check Config!";
+}
+
+ServiceDataRequest.prototype.parseUpnpErrorFromXML = function (xml){
+	xml = xml.replace(/(\r\n|\n|\r)/gm,"");
+	errorArray = xml.match(/<errorCode>(.*?)<\/errorCode><errorDescription>(.*?)<\/errorDescription>/);
+	if (errorArray == null || errorArray.length!=3){
+		return null;
+	}else{
+		return "UPnP Error Code "+errorArray[1]+" - "+errorArray[2]+". Check FBox!"
+	}
+}
 
 ServiceDataRequest.prototype.sendDataToWatch=function(context){
 	Pebble.sendAppMessage(context.buildDictionaryFromDataStore(),function(e){},function(e){});
@@ -231,7 +240,6 @@ ServiceDataRequest.prototype.buildDictionaryFromDataStore=function(){
 
 ServiceDataRequest.prototype.handleError=function(errorString, failedRequest, context){
 	if (failedRequest!=null && context.openRequests.indexOf(failedRequest)==-1){
-		console.log("request already removed, ignoring");
 		return;
 	}
 	if (failedRequest != null){
@@ -286,18 +294,18 @@ ServiceDataRequest.prototype.retrieveUrlsFromWSDL=function(errorCallback){
 ServiceDataRequest.prototype.parseServiceUrls=function(xmlResponse,errorCallback,context){
 	xmlResponse = xmlResponse.replace(/(\r\n|\n|\r)/gm,"");
 	wanIpArray=xmlResponse.match(/urn\:schemas-upnp\-org\:service\:WANIPConnection\:1(.*?)<controlURL>(.*?)<\/controlURL>/);
-	if (wanIpArray.length<3){
+	if (wanIpArray == null || wanIpArray.length<3){
 		console.log("error wan ip array");
-		errorCallback("Error discovering WANIPC Service URL. Check config!", null, context);
+		errorCallback("Error getting WANIPC URL. Check config!", null, context);
 		return;
 	}else{
 		context.ConfigData.WANIPC_URL = wanIpArray[2];
 		updateConfigData(context.ConfigData);
 	}
 	wanCicArray=xmlResponse.match(/urn\:schemas-upnp\-org\:service\:WANCommonInterfaceConfig\:1(.*?)<controlURL>(.*?)<\/controlURL>/);
-	if (wanCicArray.length<3){
+	if (wanCicArray == null || wanCicArray.length<3){
 		console.log("error wan cic array");
-		errorCallback("Error discovering WANCIC Service URL. Check config!", null, context);
+		errorCallback("Error getting WANCIC URL. Check config!", null, context);
 		return;
 	}else{
 		context.ConfigData.WANCIC_URL = wanCicArray[2];
