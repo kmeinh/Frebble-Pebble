@@ -12,6 +12,7 @@
 		<div class="item-container-content">
  			<label class="item">
  				Nach wie vielen Sekunden sollen die angezeigten Daten aktualisiert werden?
+      			<div class="error-wrapper" id="refreshcycle-error"></div>
       			<div class="item-input-wrapper">
         			<input type="text" class="item-input" id="refreshcycle" placeholder="Aktualisierungsintervall in Sekunden">
       			</div>
@@ -19,16 +20,18 @@
     	</div>
 	</div>
 	<div class="item-container">
-		<div class="item-container-header">Fritz!Box</div>
+		<div class="item-container-header">Verbindung zur Fritz!Box</div>
 		<div class="item-container-content">
  			<label class="item">
  				Fritz!Box IP oder Hostname
+ 				<div class="error-wrapper" id="ip-error"></div>
       			<div class="item-input-wrapper">
         			<input type="text" class="item-input" id="ip" placeholder="192.168.178.1 oder fritz.box">
       			</div>
     		</label>
     		<label class="item">
- 				Fritz!Box UPNP Service Port
+ 				Fritz!Box UPnP Service Port
+ 				<div class="error-wrapper" id="port-error"></div>
       			<div class="item-input-wrapper">
         			<input type="text" class="item-input" id="port" placeholder="49000">
       			</div>

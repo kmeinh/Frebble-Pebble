@@ -1,8 +1,16 @@
 $(document).ready(function(){
 	defineElements();
 	loadOptionsFromQueryParams();
-	setupButtons();
+	setupUIActions();
 });
+
+
+ErrorMessage = {
+	"NotANumber" : "Bitte gib eine Zahl ein.",
+	"Empty" : "Bitte gib einen Hostnamen oder eine IP Adresse ein."
+};
+
+var inputErrorClass = "item-input-wrapper-error";
 
 function defineElements(){
 	submitButton = $('#submit');
@@ -12,17 +20,66 @@ function defineElements(){
 	wanipc = $('#wanipc');
 	ip = $('#ip');
 	port = $('#port');
+	refreshcycleError = $('#refreshcycle-error');
+	ipError = $('#ip-error');
+	portError = $('#port-error');
 }	
 
-function setupButtons(){
-
-	submitButton.on('click',function(){
-		var returnTo = getQueryParam("return_to","pebblejs://close#");
-		console.log("encoding"+JSON.stringify(buildConfigData()));
-		document.location = returnTo + encodeURIComponent(JSON.stringify(buildConfigData()));
-	});
-
+function setupUIActions(){
+	submitButton.on('click',submitToPebbleKit);
 	automaticDiscoveryToggle.on('change',toggleAutomaticDiscovery);
+	refreshcycle.on('keyup',refreshcycleValid);
+	ip.on('keyup',ipValid);
+	port.on('keyup',portValid);
+}
+
+function submitToPebbleKit(){
+	if (!allFieldsValid()){
+		return;
+	}
+	var returnTo = getQueryParam("return_to","pebblejs://close#");
+	console.log("encoding"+JSON.stringify(buildConfigData()));
+	document.location = returnTo + encodeURIComponent(JSON.stringify(buildConfigData()));
+}
+
+function allFieldsValid(){
+	return refreshcycleValid() & ipValid() & portValid();
+}
+
+function refreshcycleValid(){
+	if (isNaN(refreshcycle.val()) || isNaN(parseInt(refreshcycle.val()))){
+		refreshcycleError[0].innerHTML = ErrorMessage.NotANumber;
+		refreshcycle.parent().addClass(inputErrorClass);
+		return false;
+	}else{
+		refreshcycleError[0].innerHTML = '';
+		refreshcycle.parent().removeClass(inputErrorClass);
+		return true;
+	}
+}
+
+function ipValid(){
+	if (ip.val().trim().length < 1){
+		ipError[0].innerHTML = ErrorMessage.Empty;
+		ip.parent().addClass(inputErrorClass);
+		return false;
+	}else{
+		ipError[0].innerHTML = '';
+		ip.parent().removeClass(inputErrorClass);
+		return true;
+	}
+}
+
+function portValid(){
+	if (isNaN(port.val()) || isNaN(parseInt(port.val()))){
+		portError[0].innerHTML = ErrorMessage.NotANumber;
+		port.parent().addClass(inputErrorClass);
+		return false;
+	}else{
+		portError[0].innerHTML = '';
+		port.parent().removeClass(inputErrorClass);
+		return true;
+	}
 }
 
 function toggleAutomaticDiscovery(){
@@ -32,8 +89,6 @@ function toggleAutomaticDiscovery(){
 		$("#service-urls-wrapper").css("height","159px");
 	}
 }
-
-
 
 function loadOptionsFromQueryParams(){
 	var valueString = getQueryParam("values","");

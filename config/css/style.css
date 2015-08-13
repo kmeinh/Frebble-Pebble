@@ -4,3 +4,11 @@
     display: block;
     transition: height 200ms;
 }
+
+.error-wrapper{
+	color: #E82A0C;
+}
+
+.item-input-wrapper-error{
+	border-color: #E82A0C;
+}
