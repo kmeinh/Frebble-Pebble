@@ -73,7 +73,6 @@ static void initNormalWindow(Window *window){
 }
 
 static void initErrorWindow(Window *window){
-  accel_tap_service_subscribe(tap_handler);
 
   TextLayer *errorString = text_layer_create(GRect(0,((ROW_DOWNSTREAM)*GRID_HEIGHT)-8,GRID_WIDTH*NUM_X,3*GRID_HEIGHT+12));
   text_layer_set_text_color(errorString, GColorWhite);
@@ -95,14 +94,6 @@ static void initErrorWindow(Window *window){
 
   snprintf(errorTextBuffer[1],80,"ShakeToRetry");
   text_layer_set_text(errorGrid[1],errorTextBuffer[1]);  
-}
-
-static void tap_handler(AccelAxisType axis, int32_t direction){
-  APP_LOG(APP_LOG_LEVEL_DEBUG,"tapped");
-  DictionaryIterator *iterator;
-  app_message_outbox_begin(&iterator);
-  dict_write_int8(iterator,MESSAGE_TYPE,GET_SERVICE_DATA);
-  app_message_outbox_send();
 }
 
 

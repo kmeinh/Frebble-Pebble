@@ -36,3 +36,5 @@ static void outbox_sent_callback(DictionaryIterator *iterator, void *context);
 static void parseServiceData(DictionaryIterator *iterator);
 static void parseConfigData(DictionaryIterator *iterator);
 static void parseError(DictionaryIterator *iterator);
+
+void refresh_data();

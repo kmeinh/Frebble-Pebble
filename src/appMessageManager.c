@@ -28,6 +28,14 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   }
 }
 
+void refresh_data() {
+  DictionaryIterator *iterator;
+  app_message_outbox_begin(&iterator);
+  dict_write_int8(iterator,MESSAGE_TYPE,GET_SERVICE_DATA);
+  app_message_outbox_send();
+  setTimerTicksUntilUpdate(getRefreshCycle());
+}
+
 static void parseServiceData(DictionaryIterator *iterator){
   Tuple *tuple = dict_read_first(iterator);
 

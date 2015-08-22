@@ -50,4 +50,3 @@ void drawBars(float percentage, int row);
 void displayConnectionStatus(char* status);
 void displayErrorString(char* error);
 static void deinitErrorWindow(Window *window);
-static void tap_handler(AccelAxisType axis, int32_t direction);

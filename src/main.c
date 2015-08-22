@@ -3,8 +3,6 @@
 #include "appMessageManager.h"
 #include "configManager.h"
 
-static int timerTicksUntilUpdate = 0;
-
 static void timeChanged() {
   time_t temp = time(NULL);
   struct tm *tick_time = localtime(&temp);
@@ -36,15 +34,16 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   }
   if (units_changed == SECOND_UNIT && currentDisplayMode!=ERROR) {
     if (getTimerTicksUntilUpdate() == 0) {
-      DictionaryIterator *iterator;
-      app_message_outbox_begin(&iterator);
-      dict_write_int8(iterator,MESSAGE_TYPE,GET_SERVICE_DATA);
-      app_message_outbox_send();
-      setTimerTicksUntilUpdate(getRefreshCycle());
+      refresh_data();
     } else{
       setTimerTicksUntilUpdate(getTimerTicksUntilUpdate()-1);
     }
   }
+}
+
+static void tap_handler(AccelAxisType axis, int32_t direction){
+  APP_LOG(APP_LOG_LEVEL_DEBUG,"tapped");
+  refresh_data();
 }
 
 static void main_window_load(Window *window) {
@@ -53,6 +52,7 @@ static void main_window_load(Window *window) {
   initWindow(window,NORMAL);
   dateChanged();
   timeChanged();
+  accel_tap_service_subscribe(tap_handler);
 }
 
 static void main_window_unload(Window *window) {
