@@ -15,6 +15,7 @@ var inputErrorClass = "item-input-wrapper-error";
 function defineElements(){
 	submitButton = $('#submit');
 	automaticDiscoveryToggle = $('#automatic-discovery');
+	enableAutomaticRefresh = $('#enable-automatic-refresh');
 	refreshcycle = $('#refreshcycle');
 	wancic = $('#wancic');
 	wanipc = $('#wanipc');
@@ -97,6 +98,7 @@ function loadOptionsFromQueryParams(){
 	}
 	valuesObject = JSON.parse(decodeURIComponent(valueString));
 	refreshcycle.val(valuesObject.REFRESH_CYCLE);
+	enableAutomaticRefresh[0].checked = valuesObject.ENABLE_AUTOMATIC_REFRESH;
 	ip.val(valuesObject.FRITZ_IP);
 	port.val(valuesObject.FRITZ_PORT);
 	wancic.val(valuesObject.WANCIC_URL);
@@ -108,6 +110,7 @@ function loadOptionsFromQueryParams(){
 function buildConfigData(){
 	return {
 		REFRESH_CYCLE : refreshcycle.val(),
+		ENABLE_AUTOMATIC_REFRESH : enableAutomaticRefresh[0].checked
 		WANCIC_URL : wancic.val(),
 		WANIPC_URL : wanipc.val(),
 		AUTOMATIC_DISCOVERY : automaticDiscoveryToggle[0].checked,
