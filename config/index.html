@@ -8,16 +8,24 @@
 </head>
 <body>
 	<div class="item-container">
-		<div class="item-container-header">Aktualisierungsintervall</div>
+		<div class="item-container-header">Aktualisierung</div>
 		<div class="item-container-content">
+			<div class="item">
+			Frebble aktualisiert die angezeigten Daten immer, wenn du deine Uhr schüttelst um die Beleuchtung zu aktivieren. Zusätzlich dazu kannst du die Daten automatisch nach einer bestimmten Zeit aktualisieren lassen.
+			</div>
  			<label class="item">
- 				Frebble aktualisiert die angezeigten Daten immer, wenn du deine Uhr schüttelst um die Beleuchtung zu aktivieren. Zusätzlich dazu kannst du die Daten automatisch nach einer bestimmten Zeit aktualisieren lassen.
-      			<div class="error-wrapper" id="refreshcycle-error"></div>
-      			<input type="checkbox" class="item-toggle" id="enable-automatic-refresh" checked>
-      			<div class="item-input-wrapper">
-        			<input type="text" class="item-input" id="refreshcycle" placeholder="Aktualisierungsintervall in Sekunden">
-      			</div>
-    		</label>
+ 				Automatische Aktualisierung
+				<input type="checkbox" class="item-toggle" id="enable-automatic-refresh" checked>
+ 			</label>
+ 			<span id="refreshcycle-wrapper" class="hideable-area">
+	 			<label class="item">
+	 				Nach wie vielen Sekunden sollen die angezeigten Daten automatisch aktualisiert werden?
+	      			<div class="error-wrapper" id="refreshcycle-error"></div>      			
+	      			<div class="item-input-wrapper">
+	        			<input type="text" class="item-input" id="refreshcycle" placeholder="Aktualisierungsintervall in Sekunden">
+	      			</div>
+	    		</label>
+    		</span>
     	</div>
 	</div>
 	<div class="item-container">
@@ -49,7 +57,7 @@
       		Automatische Konfiguration
       			<input type="checkbox" class="item-toggle" id="automatic-discovery" checked>
     		</label>
-			<span id="service-urls-wrapper">
+			<span id="service-urls-wrapper" class="hideable-area">
 	 			<label class="item">
 	 				WAN Common Interface Config URL
 	      			<div class="item-input-wrapper">

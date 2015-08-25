@@ -29,6 +29,7 @@ function defineElements(){
 function setupUIActions(){
 	submitButton.on('click',submitToPebbleKit);
 	automaticDiscoveryToggle.on('change',toggleAutomaticDiscovery);
+	enableAutomaticRefresh.on('change', toggleAutomaticRefresh);
 	refreshcycle.on('keyup',refreshcycleValid);
 	ip.on('keyup',ipValid);
 	port.on('keyup',portValid);
@@ -93,9 +94,9 @@ function toggleAutomaticDiscovery(){
 
 function toggleAutomaticRefresh() {
 	if (enableAutomaticRefresh[0].checked) {
-		$("#refreshcycle").css("height","0px");
+		$("#refreshcycle-wrapper").css("height","79px");
 	} else {
-		$("#refreshcycle").css("height","19px");
+		$("#refreshcycle-wrapper").css("height","0px");
 	}
 
 }
@@ -114,7 +115,7 @@ function loadOptionsFromQueryParams(){
 	wanipc.val(valuesObject.WANIPC_URL);
 	automaticDiscoveryToggle[0].checked = valuesObject.AUTOMATIC_DISCOVERY;
 	toggleAutomaticDiscovery();
-
+	toggleAutomaticRefresh();
 }
 
 function buildConfigData(){

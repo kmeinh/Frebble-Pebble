@@ -8,20 +8,18 @@ void initConfigValuesFromPersistentStorage(){
   	if (persist_exists(REFRESH_CYCLE)){
   	  refreshCycle = persist_read_int(REFRESH_CYCLE);
   	}
+  	if (persist_exists(ENABLE_AUTOMATIC_REFRESH)){
+  		shouldUpdate = persist_read_bool(ENABLE_AUTOMATIC_REFRESH);
+  	}
 }
 
 uint32_t getRefreshCycle(){
-	if (shouldUpdate == true) {
-		return refreshCycle;
-	} else {
-		//
-		// If we should not update, return a number that is higher then 0
-		return 1;
-	}
+	return refreshCycle;
 }
 
 void setShouldUpdateFlag(bool flag) {
 	shouldUpdate = flag;
+	persist_write_bool(ENABLE_AUTOMATIC_REFRESH, shouldUpdate);
 }
 
 void setRefreshCycle(uint32_t newRefreshCycle){
@@ -31,7 +29,13 @@ void setRefreshCycle(uint32_t newRefreshCycle){
 }
 
 int getTimerTicksUntilUpdate(){
-  	return timerTicksUntilUpdate;
+  		if (shouldUpdate) {
+		return timerTicksUntilUpdate;
+	} else {
+		//
+		// If we should not update, return a number that is higher then 0
+		return 1;
+	}
 }
 
 void setTimerTicksUntilUpdate(int updatedTimerTicksUntilUpdate){

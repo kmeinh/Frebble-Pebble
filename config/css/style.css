@@ -1,8 +1,12 @@
-#service-urls-wrapper{
+.hideable-area{
 	height: 0px;
     overflow: hidden;
     display: block;
     transition: height 200ms;
+}
+
+.hideable-area:not(:first-child) {
+    border-top: 1px solid #DEDEDE;
 }
 
 .error-wrapper{
