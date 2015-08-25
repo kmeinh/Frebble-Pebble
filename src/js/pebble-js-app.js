@@ -42,8 +42,7 @@ Pebble.addEventListener('webviewclosed',function(e){
 });
 
 function createURLFromLocalConfigData(){
-	var baseUrl = 'http://5c77ab1c.ngrok.io';
-	// var baseUrl = 'http://www.frebble.de/pebble_app_config/config.html';
+	var baseUrl = 'http://www.frebble.de/pebble_app_config/config.html';
 	return baseUrl + "?values=" + encodeURIComponent(JSON.stringify(ConfigData));
 }
 
