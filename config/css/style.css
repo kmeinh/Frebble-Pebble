@@ -1,8 +1,7 @@
 .hideable-area{
-	height: 0px;
     overflow: hidden;
     display: block;
-    transition: height 200ms;
+    transition: max-height 350ms;
 }
 
 .hideable-area:not(:first-child) {

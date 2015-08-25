@@ -86,17 +86,17 @@ function portValid(){
 
 function toggleAutomaticDiscovery(){
 	if (automaticDiscoveryToggle[0].checked){
-		$("#service-urls-wrapper").css("height","0px");
+		$("#service-urls-wrapper").css("max-height","0px");
 	}else{
-		$("#service-urls-wrapper").css("height","159px");
+		$("#service-urls-wrapper").css("max-height","200px");
 	}
 }
 
 function toggleAutomaticRefresh() {
 	if (enableAutomaticRefresh[0].checked) {
-		$("#refreshcycle-wrapper").css("height","79px");
+		$("#refreshcycle-wrapper").css("max-height","150px");
 	} else {
-		$("#refreshcycle-wrapper").css("height","0px");
+		$("#refreshcycle-wrapper").css("max-height","0px");
 	}
 
 }
