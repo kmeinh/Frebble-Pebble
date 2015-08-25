@@ -91,6 +91,15 @@ function toggleAutomaticDiscovery(){
 	}
 }
 
+function toggleAutomaticRefresh() {
+	if (enableAutomaticRefresh[0].checked) {
+		$("#refreshcycle").css("height","0px");
+	} else {
+		$("#refreshcycle").css("height","19px");
+	}
+
+}
+
 function loadOptionsFromQueryParams(){
 	var valueString = getQueryParam("values","");
 	if (valueString == ""){
@@ -105,6 +114,7 @@ function loadOptionsFromQueryParams(){
 	wanipc.val(valuesObject.WANIPC_URL);
 	automaticDiscoveryToggle[0].checked = valuesObject.AUTOMATIC_DISCOVERY;
 	toggleAutomaticDiscovery();
+
 }
 
 function buildConfigData(){
