@@ -110,7 +110,7 @@ function loadOptionsFromQueryParams(){
 function buildConfigData(){
 	return {
 		REFRESH_CYCLE : refreshcycle.val(),
-		ENABLE_AUTOMATIC_REFRESH : enableAutomaticRefresh[0].checked
+		ENABLE_AUTOMATIC_REFRESH : enableAutomaticRefresh[0].checked,
 		WANCIC_URL : wancic.val(),
 		WANIPC_URL : wanipc.val(),
 		AUTOMATIC_DISCOVERY : automaticDiscoveryToggle[0].checked,

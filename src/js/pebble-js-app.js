@@ -11,9 +11,10 @@ function initConfigData(){
 	REFRESH_CYCLE : localStorage.getItem("REFRESH_CYCLE")||5,
 	FRITZ_IP : localStorage.getItem("FRITZ_IP")||"fritz.box",
 	FRITZ_PORT : localStorage.getItem("FRITZ_PORT")||49000,
-	AUTOMATIC_DISCOVERY : localStorage.getItem("AUTOMATIC_DISCOVERY")||1,
+	AUTOMATIC_DISCOVERY : localStorage.getItem("AUTOMATIC_DISCOVERY"),
 	WANCIC_URL : localStorage.getItem("WANCIC_URL")||"/igdupnp/control/WANCommonIFC1",
-	WANIPC_URL : localStorage.getItem("WANIPC_URL")||"/igdupnp/control/WANIPConn1"
+	WANIPC_URL : localStorage.getItem("WANIPC_URL")||"/igdupnp/control/WANIPConn1",
+	ENABLE_AUTOMATIC_REFRESH : localStorage.getItem("ENABLE_AUTOMATIC_REFRESH")
 	};
 }
 
@@ -41,7 +42,8 @@ Pebble.addEventListener('webviewclosed',function(e){
 });
 
 function createURLFromLocalConfigData(){
-	var baseUrl = 'http://www.frebble.de/pebble_app_config/config.html';
+	var baseUrl = 'http://5c77ab1c.ngrok.io';
+	// var baseUrl = 'http://www.frebble.de/pebble_app_config/config.html';
 	return baseUrl + "?values=" + encodeURIComponent(JSON.stringify(ConfigData));
 }
 
@@ -77,12 +79,14 @@ function updateConfigData(updatedConfigData){
 	ConfigData.AUTOMATIC_DISCOVERY = updatedConfigData.AUTOMATIC_DISCOVERY==null?ConfigData.AUTOMATIC_DISCOVERY:updatedConfigData.AUTOMATIC_DISCOVERY;
 	ConfigData.WANCIC_URL = updatedConfigData.WANCIC_URL||ConfigData.WANCIC_URL;
 	ConfigData.WANIPC_URL = updatedConfigData.WANIPC_URL||ConfigData.WANIPC_URL;
+	ConfigData.ENABLE_AUTOMATIC_REFRESH = updatedConfigData.ENABLE_AUTOMATIC_REFRESH==null?ConfigData.ENABLE_AUTOMATIC_REFRESH:updatedConfigData.ENABLE_AUTOMATIC_REFRESH;
 	localStorage.setItem("REFRESH_CYCLE",updatedConfigData.REFRESH_CYCLE);
 	localStorage.setItem("FRITZ_IP",updatedConfigData.FRITZ_IP);
 	localStorage.setItem("FRITZ_PORT",updatedConfigData.FRITZ_PORT);
 	localStorage.setItem("AUTOMATIC_DISCOVERY",+updatedConfigData.AUTOMATIC_DISCOVERY);
 	localStorage.setItem("WANCIC_URL",updatedConfigData.WANCIC_URL);
 	localStorage.setItem("WANIPC_URL",updatedConfigData.WANIPC_URL);
+	localStorage.setItem("ENABLE_AUTOMATIC_REFRESH",ConfigData.ENABLE_AUTOMATIC_REFRESH);
 }
 
 function abortOpenServiceDataRequestsForIp(fritzIp){
@@ -97,7 +101,8 @@ function abortOpenServiceDataRequestsForIp(fritzIp){
 function buildDictionaryFromConfigData(){
 	return {
 		MESSAGE_TYPE:SET_CONFIG_DATA,
-		REFRESH_CYCLE:parseInt(ConfigData.REFRESH_CYCLE)
+		REFRESH_CYCLE:parseInt(ConfigData.REFRESH_CYCLE),
+		ENABLE_AUTOMATIC_REFRESH:ConfigData.ENABLE_AUTOMATIC_REFRESH
 	};
 }
 

@@ -82,9 +82,9 @@ static void parseConfigData(DictionaryIterator *iterator){
       case REFRESH_CYCLE:
         setRefreshCycle((uint32_t)tuple->value->int32);
         break;
-      case AUTOMATIC_DISCOVERY:
+      case ENABLE_AUTOMATIC_REFRESH:
         setShouldUpdateFlag(tuple->value->int32);
-        setRefreshCycle(0);
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "setting automatic refresh %li", tuple->value->int32);
     }
     tuple = dict_read_next(iterator);
   }
