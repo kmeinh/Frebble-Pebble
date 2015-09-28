@@ -30,7 +30,7 @@
   "shortName": "Frebble",
   "uuid": "5367c955-d5cb-4cb6-ae62-3a2f3c0e11ef",
   "versionCode": 1,
-  "versionLabel": "1.2",
+  "versionLabel": "1.3",
   "watchapp": {
     "watchface": true
   },

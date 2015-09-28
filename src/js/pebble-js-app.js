@@ -11,21 +11,21 @@ function initConfigData(){
 	REFRESH_CYCLE : localStorage.getItem("REFRESH_CYCLE")||5,
 	FRITZ_IP : localStorage.getItem("FRITZ_IP")||"fritz.box",
 	FRITZ_PORT : localStorage.getItem("FRITZ_PORT")||49000,
-	AUTOMATIC_DISCOVERY : localStorage.getItem("AUTOMATIC_DISCOVERY"),
+	AUTOMATIC_DISCOVERY : localStorage.getItem("AUTOMATIC_DISCOVERY")===null?true:localStorage.getItem("AUTOMATIC_DISCOVERY"),
 	WANCIC_URL : localStorage.getItem("WANCIC_URL")||"/igdupnp/control/WANCommonIFC1",
 	WANIPC_URL : localStorage.getItem("WANIPC_URL")||"/igdupnp/control/WANIPConn1",
-	ENABLE_AUTOMATIC_REFRESH : localStorage.getItem("ENABLE_AUTOMATIC_REFRESH")
+	ENABLE_AUTOMATIC_REFRESH : localStorage.getItem("ENABLE_AUTOMATIC_REFRESH")===null?true:localStorage.getItem("ENABLE_AUTOMATIC_REFRESH")
 	};
 }
 
-Pebble.addEventListener('ready', 
+Pebble.addEventListener('ready',
 	function(){
 		initConfigData();
 		}
 	);
 
 Pebble.addEventListener('appmessage',
-	handleIncomingMessage                 
+	handleIncomingMessage
 	);
 
 Pebble.addEventListener('showConfiguration',function(){
@@ -33,7 +33,7 @@ Pebble.addEventListener('showConfiguration',function(){
 });
 
 Pebble.addEventListener('webviewclosed',function(e){
-	if (e.response == ""){
+	if (e.response === ""){
 		return;
 	}
 	var updatedConfigData = JSON.parse(decodeURIComponent(e.response));
@@ -47,7 +47,7 @@ function createURLFromLocalConfigData(){
 }
 
 function getData(){
-	if (openServiceDataRequests[ConfigData.FRITZ_IP]==null){
+	if (openServiceDataRequests[ConfigData.FRITZ_IP]===null){
 		openServiceDataRequests[ConfigData.FRITZ_IP]=[];
 	}
 	req = new ServiceDataRequest(clone(ConfigData));
@@ -55,7 +55,7 @@ function getData(){
 	openServiceDataRequests[req.ConfigData.FRITZ_IP].push(req);
 	req.destroy = function(){
 		openServiceDataRequests[req.ConfigData.FRITZ_IP].splice(openServiceDataRequests[req.ConfigData.FRITZ_IP].indexOf(req),1);
-	}
+	};
 }
 
 function handleIncomingMessage(message){
@@ -75,10 +75,10 @@ function updateConfigData(updatedConfigData){
 	ConfigData.REFRESH_CYCLE = updatedConfigData.REFRESH_CYCLE||ConfigData.REFRESH_CYCLE;
 	ConfigData.FRITZ_IP = updatedConfigData.FRITZ_IP||ConfigData.FRITZ_IP;
 	ConfigData.FRITZ_PORT = updatedConfigData.FRITZ_PORT||ConfigData.FRITZ_PORT;
-	ConfigData.AUTOMATIC_DISCOVERY = updatedConfigData.AUTOMATIC_DISCOVERY==null?ConfigData.AUTOMATIC_DISCOVERY:updatedConfigData.AUTOMATIC_DISCOVERY;
+	ConfigData.AUTOMATIC_DISCOVERY = updatedConfigData.AUTOMATIC_DISCOVERY===null?ConfigData.AUTOMATIC_DISCOVERY:updatedConfigData.AUTOMATIC_DISCOVERY;
 	ConfigData.WANCIC_URL = updatedConfigData.WANCIC_URL||ConfigData.WANCIC_URL;
 	ConfigData.WANIPC_URL = updatedConfigData.WANIPC_URL||ConfigData.WANIPC_URL;
-	ConfigData.ENABLE_AUTOMATIC_REFRESH = updatedConfigData.ENABLE_AUTOMATIC_REFRESH==null?ConfigData.ENABLE_AUTOMATIC_REFRESH:updatedConfigData.ENABLE_AUTOMATIC_REFRESH;
+	ConfigData.ENABLE_AUTOMATIC_REFRESH = updatedConfigData.ENABLE_AUTOMATIC_REFRESH===null?ConfigData.ENABLE_AUTOMATIC_REFRESH:updatedConfigData.ENABLE_AUTOMATIC_REFRESH;
 	localStorage.setItem("REFRESH_CYCLE",updatedConfigData.REFRESH_CYCLE);
 	localStorage.setItem("FRITZ_IP",updatedConfigData.FRITZ_IP);
 	localStorage.setItem("FRITZ_PORT",updatedConfigData.FRITZ_PORT);
@@ -256,8 +256,8 @@ ServiceDataRequest.prototype.handleError=function(errorString, failedRequest, co
 		Pebble.sendAppMessage({MESSAGE_TYPE:SET_ERROR,
 			ERROR_STRING:errorString},function(e){},function(e){});
 		context.destroy();
-	}	
-	
+	}
+
 }
 
 ServiceDataRequest.prototype.abortAllOpenRequests=function(){
@@ -323,7 +323,7 @@ function clone(obj){
 	if(obj == null || typeof(obj) != 'object')
 		return obj;
 
-	var temp = new obj.constructor(); 
+	var temp = new obj.constructor();
 	for(var key in obj)
 		temp[key] = clone(obj[key]);
 
